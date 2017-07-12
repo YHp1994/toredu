@@ -1,0 +1,11 @@
+<!--pages/aquare/aquare.wxml-->
+<import src="../../common/aquare-list.wxml"/>
+<view class="page aquare">
+    <view class="search" bindtap="seachProblem">
+          <image src="/images/icon/search.png"></image>
+          <text>请输入你的问题</text>
+    </view>
+    <view class="page topics">
+      <template is="aquare-list" data="{{ postsList, hidden }}"/>
+    </view>
+</view>

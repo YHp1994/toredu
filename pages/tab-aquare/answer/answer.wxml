@@ -1,0 +1,12 @@
+<!--pages/answer/answer.wxml-->
+<view class="page answer">
+<view class="section">
+  <form bindsubmit="bindFormSubmit">
+    <textarea placeholder="你输入你的回答" name="textarea"/>
+    <button form-type="submit"> 提交 </button>
+  </form>
+</view>
+  <!--<modal title="消息" confirm-text="确认" cancel-text="关闭" hidden="{{modalHidden}}" bindconfirm="confirmChange" bindcancel="cancelChange">
+    您还没未登录conde，是否前往认证登录？
+  </modal>-->
+</view>

@@ -1,0 +1,49 @@
+{
+  "pages": [
+    "pages/tab-aquare/aquare/aquare",
+    "pages/logs/logs",
+    "pages/tab-aquare/detail/detail",
+    "pages/tab-aquare/answer/answer",
+    "pages/tab-aquare/search/search",
+    "pages/tab-aquare/searchlist/searchlist",
+    "pages/tab-ask/ask/ask",
+    "pages/tab-mine/mine/mine",
+    "pages/tab-mine/login2/login2",
+    "pages/tab-mine/login/login",
+    "pages/tab-mine/sign/sign"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "backgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#444",
+    "navigationBarTitleText": "证券从业考试问答",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": "true"
+  },
+  "tabBar": {
+    "color": "#444",
+    "selectedColor": "#80bd01",
+    "backgroundColor": "#fff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/tab-aquare/aquare/aquare",
+        "text": "广场",
+        "iconPath": "images/bar/CNode.png",
+        "selectedIconPath": "images/bar/CNodeHL.png"
+      },
+      {
+        "pagePath": "pages/tab-ask/ask/ask",
+        "text": "提问",
+        "iconPath": "images/bar/ME.png",
+        "selectedIconPath": "images/bar/MEHL.png"
+      },
+      {
+        "pagePath": "pages/tab-mine/mine/mine",
+        "text": "我的",
+        "iconPath": "images/bar/ME.png",
+        "selectedIconPath": "images/bar/MEHL.png"
+      }
+    ]
+  }
+}

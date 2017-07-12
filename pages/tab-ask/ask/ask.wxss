@@ -1,0 +1,15 @@
+/* ask.wxss */
+.chooseImg{
+  width: 200rpx;
+  height: 200rpx;
+}
+.chooseBtn{
+  width: 216rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  color: #f25810;
+  display: block;
+  margin: 0 auto;
+  background: rgba(251, 200, 30, 0.3)
+}
