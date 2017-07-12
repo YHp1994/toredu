@@ -19,7 +19,7 @@ var new_topic = HOST + '/topics';
 
 // toredu
 //api路径
-var THOST = 'https://192.168.0.146/small/application';
+var THOST = 'https://app.toredu.com/small/application/';
 //校验码 get /kaptcha
 var t_kaptcha = THOST + '/kaptcha';
 //注册 post /sys/sign
@@ -28,6 +28,8 @@ var t_sign = THOST + '/sys/sign';
 var t_login = THOST + '/sys/login';
 //用户提问 post /faq/question
 var t_question = THOST + '/faq/question';
+//全部问题列表 get /faq/questionList
+var t_questionList = THOST + '/faq/questionList';
 
 
 
@@ -184,6 +186,8 @@ module.exports = {
  t_login: t_login,
   //用户提问 post /faq/question
  t_question: t_question,
+ //全部问题列表 get /faq/questionList
+ t_questionList: t_questionList,
 
 
  requestPostApi: requestPostApi,

@@ -23,7 +23,7 @@ Page({
   chooseImg: function () {//这里是选取图片的方法
     var that = this;
     wx.chooseImage({
-      count: 9 - that.data.imgsList.length, // 最多可以选择的图片张数，默认9
+      count: 6 - that.data.imgsList.length, // 最多可以选择的图片张数，默认9
       sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
       sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
       success: function (res) {
@@ -59,11 +59,12 @@ Page({
      console.log(this.data.imgsList)
      if (this.data.imgsList.length == 0){
       console.log("没有图片")
+      console.log({ memberID: '23694', question: '没有图片没有图片没有图片啊啊啊啊啊啊啊啊啊' })
        wx.request({
-         url: 'https://app.toredu.com/small/application/faq/question',
          method: 'POST',
-         header: { 'Content-Type': 'application/x-www-form-urlencided' },
-         data: { memberID: '23694', question: '没有图片没有图片没有图片啊啊啊啊啊啊啊啊啊', fileList: "", qNum: '' },
+         header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+         url: 'https://app.toredu.com/small/application/faq/question',
+         data: json2Form({ memberID: '23694', question: '没有图片没有图片没有图片啊啊啊啊啊啊啊啊啊'}),
          success: function (res) {
            console.log(res);
          }
@@ -210,6 +211,13 @@ function uploadimg(data) {
       i++;
       if (i == data.path.length) {   //当图片传完时，停止调用          
         console.log('执行完毕');
+        wx.showLoading({
+          title: '上传完毕',
+        })
+
+        setTimeout(function () {
+          wx.hideLoading()
+        }, 2000)
         console.log('成功：' + success + " 失败：" + fail);
       } else {//若图片还没有传完，则继续调用函数
         console.log(i);

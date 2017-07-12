@@ -34,7 +34,7 @@ Page({
   },
   sucessKaptcha:(res,selfObj) =>{
     console.log("sucessres",res);
-    selfObj.setData({ codeMsgUrl: 'https://192.168.0.146/' + res.verifyCodeUrl, codeMSg: res.verifyCode })
+    selfObj.setData({ codeMsgUrl: 'https://app.toredu.com/' + res.verifyCodeUrl, codeMSg: res.verifyCode })
   },
   failKaptcha: (res, selfObj) => {
     console.log("failKaptcha", res);
