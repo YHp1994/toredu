@@ -1,4 +1,6 @@
 // ask.js
+var Api = require('../../../utils/api.js');
+var util = require('../../../utils/util.js');
 var app = getApp();
 Page({
 
@@ -6,31 +8,53 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgsList:[]
+    imgsList:[],
+    imgLen: 0,
+    hidden: false,
+    count:6
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-    console.log(this.data.imgsList.length)
+    // console.log(this.data.imgsList.length)
   },
-
   /**
    * 上传图片
    */
   chooseImg: function () {//这里是选取图片的方法
     var that = this;
+    var countNum = this.data.count;
+    if (countNum<=0){
+      countNum = 0;
+      this.setData({
+        count: countNum
+      })
+    }else{
+      
+   this.setData({
+     count: countNum
+   })
     wx.chooseImage({
-      count: 6 - that.data.imgsList.length, // 最多可以选择的图片张数，默认9
+      count: countNum, // 最多可以选择的图片张数，默认9
       sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
       sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
       success: function (res) {
+        var imgs = that.data.imgsList;
         var imgsrc = res.tempFilePaths;
-        that.setData({
-          imgsList: imgsrc
+        imgsrc.map(function(item){
+          imgs.push(item);
         });
+        that.setData({
+          imgLen: imgs.length
+        })
+        that.setData({
+          imgsList: imgs
+        });
+        if (that.data.imgsList.length >=6 ){
+          that.setData({ hidden: true });
+        }
       },
       fail: function () {
         // fail
@@ -39,47 +63,50 @@ Page({
         // complete
       }
     })
+    }
     },
-    // uploadimg: function () {//这里触发图片上传的方法
-    //   var pics = this.data.pics;
-    //   app.uploadimg({
-    //     url: 'https://........',//这里是你图片上传的接口
-    //     path: pics//这里是选取的图片的地址数组
-    //   });
-    // },
     bindFormSubmit: function (e) {
-      // var content = e.detail.value.textarea;
-    //   var imgsList = this.data.imgsList;
-    //  uploadimg({
-    //     url: 'https://192.168.0.146/small/application/faq/question',//这里是你图片上传的接口
-    //     path: imgsList//这里是选取的图片的地址数组
-    //   });
      var that = this;
-      // var pics = this.data.imgsList;
-     console.log(this.data.imgsList)
+     var CuserInfo = wx.getStorageSync('CuserInfo');
+     var ApiUrl = Api.t_question;
+     var memberID = CuserInfo.memberID;
+     var question = e.detail.value.content;
      if (this.data.imgsList.length == 0){
-      console.log("没有图片")
-      console.log({ memberID: '23694', question: '没有图片没有图片没有图片啊啊啊啊啊啊啊啊啊' })
-       wx.request({
-         method: 'POST',
-         header: { 'Content-Type': 'application/x-www-form-urlencoded' },
-         url: 'https://app.toredu.com/small/application/faq/question',
-         data: json2Form({ memberID: '23694', question: '没有图片没有图片没有图片啊啊啊啊啊啊啊啊啊'}),
-         success: function (res) {
-           console.log(res);
-         }
-       })
+      var params = json2Form({ memberID: memberID, question: question });
+      /**
+      * 
+      *  调用登录接口
+      * requestPostApi(url, params, sourceObj, successFun, failFun, completeFun)
+      */
+      Api.requestPostApi(ApiUrl, params, this, this.sucessAsk);
+      
      }else{
        uploadimg({
-         url: 'https://app.toredu.com/small/application/faq/question',//这里是你图片上传的接口
+         url:  ApiUrl,//这里是你图片上传的接口
          path: that.data.imgsList//这里是选取的图片的地址数组
-       });
+       },memberID,question);
        wx.hideLoading();
      }
-    
-      
-      
     },
+    sucessAsk: function (res, selfObj){
+        console.log(res);
+    },
+  /**
+   * 删除图片
+   */
+  delImgTap:function(e){
+    var index = e.target.dataset.index;
+    var imgsList = this.data.imgsList;
+    //移除列表中下标为index的项
+    imgsList.splice(index, 1);
+    //更新列表的状态
+    this.setData({
+      imgsList: imgsList
+    });
+    if (this.data.imgsList.length < 6) {
+      this.setData({ hidden: false, count:6 - this.data.imgsList.length });
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -112,7 +139,6 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
   },
 
   /**
@@ -130,115 +156,53 @@ Page({
   }
 })
 //多张图片上传
-// function uploadimg(data) {
-//   var that = this,
-//     i = data.i ? data.i : 0,
-//     success = data.success ? data.success : 0,
-//     fail = data.fail ? data.fail : 0;
-//   console.log("that.data.imgsList", that.data.imgsList)
-//   wx.uploadFile({
-//     url: data.url,
-//     filePath: that.data.imgsList,
-//     name: 'fileData',
-//     formData: { memberID: '23694', question: '提问内容提问内容提问内容提问内容提问内容提问内容提问内容提问内容提问内容提问内容提问内容', fileList: that.data.imgsList},
-//     success: (resp) => {
-//       success++;
-//       console.log(resp)
-//       console.log(i);
-//       //这里可能有BUG，失败也会执行这里
-//     },
-//     fail: (res) => {
-//       fail++;
-//       console.log('fail:' + i + "fail:" + fail);
-//     },
-//     complete: () => {
-//       console.log(i);
-//       i++;
-//       if (i == data.path.length) {   //当图片传完时，停止调用          
-//         console.log('执行完毕');
-//         console.log('成功：' + success + " 失败：" + fail);
-//       } else {//若图片还没有传完，则继续调用函数
-//         console.log(i);
-//         data.i = i;
-//         data.success = success;
-//         data.fail = fail;
-//         uploadimg(data);
-//       }
-//     }
-//   });
-// }
-//多张图片上传
 
 var qNum = '';
-function uploadimg(data) {
+function uploadimg(data, memberID, question) {
   var that = this,
     i = data.i ? data.i : 0,
     success = data.success ? data.success : 0,
     fail = data.fail ? data.fail : 0;
-    console.log(data.path[i]);
-    if(data.path == ''){
-
-    }
- 
-  // console.log("data.url",data.url);
-  // var vid = vid;
   const uploadTask = wx.uploadFile({
     url: data.url,
     filePath: data.path[i],
     name: 'fileList',
-    formData: { memberID: '23694', question: '提问内容提问内容提问内容提问内容提问内容提问内容提问内容提问内容提问内容提问内容提问内容', fileList: data.path[i],qNum:qNum},
+    formData: { memberID: memberID, question: question, fileList: data.path[i],qNum:qNum},
     success: (res) => {
       success++;
-      console.log(res)
       if(res.data){
         var data = JSON.parse(res.data);
-        console.log(data.qNum);
-        console.log(i);
-        console.log("qNum", qNum)
         qNum = data.qNum;
-        console.log("qNum2", qNum)
       }
-      
-      //这里可能有BUG，失败也会执行这里
     },
     fail: (res) => {
-      console.log('failres',res)
       fail++;
-      console.log('fail:' + i + "fail:" + fail);
     },
     complete: () => {
-      console.log(i);
       i++;
-      if (i == data.path.length) {   //当图片传完时，停止调用          
-        console.log('执行完毕');
+      if (i == data.path.length) {   //当图片传完时，停止调用         
         wx.showLoading({
           title: '上传完毕',
         })
-
         setTimeout(function () {
           wx.hideLoading()
         }, 2000)
-        console.log('成功：' + success + " 失败：" + fail);
       } else {//若图片还没有传完，则继续调用函数
-        console.log(i);
         data.i = i;
         data.success = success;
         data.fail = fail;
         uploadimg(data);
       }
-
     }
   });
   uploadTask.onProgressUpdate((res) => {
     
-    console.log('上传进度', res.progress)
-    console.log('已经上传的数据长度', res.totalBytesSent)
-    console.log('预期需要上传的数据总长度', res.totalBytesExpectedToSend)
+    // console.log('上传进度', res.progress)
+    // console.log('已经上传的数据长度', res.totalBytesSent)
+    // console.log('预期需要上传的数据总长度', res.totalBytesExpectedToSend)
 
-    console.log('aaa1')
     if (res.progress == '100'){
       wx.hideLoading();
-      console.log('aaa')
     }else{
       wx.showLoading({
         title: '已上传' + res.progress + '%',

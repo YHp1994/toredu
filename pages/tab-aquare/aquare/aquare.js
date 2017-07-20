@@ -11,7 +11,7 @@ Page({
     postsList: [],
     hidden: false,
     page: 1,
-    limit: 10,
+    limit: 8,
     tab: 'dev'
   },
   seachProblem: function () {
@@ -48,22 +48,43 @@ Page({
     var page = that.data.page;
     var limit = that.data.limit;
     var ApiUrl = Api.topics + '?tab=' + tab + '&page=' + page + '&limit=' + limit;
-
+    var ApiUrl1 = Api.t_questionList + '?pageNo=' + page + '&ini=' + limit;
+    console.log(ApiUrl1)
     that.setData({ hidden: false });
 
     if (page == 1) {
       that.setData({ postsList: [] });
+      that.setData({ postsList1: [] });
     }
 
     Api.fetchGet(ApiUrl, (err, res) => {
       //更新数据
+      console.log(res)
       that.setData({
         postsList: that.data.postsList.concat(res.data.map(function (item) {
-          item.last_reply_at = util.getDateDiff(new Date(item.last_reply_at));
           return item;
         }))
       });
-
+    });
+      Api.fetchGet(ApiUrl1, (err, res) => {
+        //更新数据
+        console.log(res)
+        if(res){
+          that.setData({
+            postsList1: that.data.postsList1.concat(res.data.faqList.map(function (item) {
+              // item.last_reply_at = util.getDateDiff(new Date(item.last_reply_at));
+              return item;
+            }))
+          });
+        }else{
+          wx.showToast({
+            title: '到底了',
+          })
+          setTimeout(function(){
+            wx.hideToast()
+          },1000)
+          
+        }
       setTimeout(function () {
         that.setData({ hidden: true });
       }, 300);
@@ -77,13 +98,19 @@ Page({
     that.setData({
       page: that.data.page + 1
     });
-    if (that.data.tab !== 'all') {
-      this.getData({ tab: that.data.tab, page: that.data.page });
-    } else {
+    // if (that.data.tab !== 'all') {
+    //   this.getData({ tab: that.data.tab, page: that.data.page });
+    // } else {
       this.getData({ page: that.data.page });
-    }
+    // }
   },
-
+//下拉刷新
+// upper:function(){
+  
+//   that.setData({
+//     page: 1
+//   });
+// },
 
 
   /**

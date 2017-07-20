@@ -6,18 +6,16 @@ var app = getApp();
 Page({
   data: {
     registBtnTxt: "注册",
-    registBtnBgBgColor: "#f28820",
     getSmsCodeBtnTxt: "",
-    getSmsCodeBtnColor: "#f28820",
     // getSmsCodeBtnTime:60,
     btnLoading: false,
     registDisabled: false,
     smsCodeDisabled: false,
     inputUserName: '',
     inputPassword: '',
-    logIcon: "../../../images/logIcon.png",
-    pwdIcon: "../../../images/pwdIcon.png",
-    verifiIcon: "../../../images/verifiIcon.png",
+    logIcon: "../../../images/icon/login.png",
+    pwdIcon: "../../../images/icon/password.png",
+    verifiIcon: "../../../images/icon/verification.png",
     codeMsgUrl: '',
     codeMSg: '',
     memberID: ''
@@ -38,6 +36,54 @@ Page({
   },
   failKaptcha: (res, selfObj) => {
     console.log("failKaptcha", res);
+  },
+  /*
+ *  手机号获取焦点
+ */
+  phoneFocus: function () {
+    this.setData({
+      logIcon: "../../../images/icon/login_sel.png"
+    })
+  },
+  /*
+ *  手机号失去焦点
+ */
+  phoneBlur: function () {
+    this.setData({
+      logIcon: "../../../images/icon/login.png"
+    })
+  },
+  /*
+  *  密码获取焦点
+  */
+  pwdFocus: function () {
+    this.setData({
+      pwdIcon: "../../../images/icon/password_sel.png"
+    })
+  },
+  /*
+ *  密码失去焦点
+ */
+  pwdBlur: function () {
+    this.setData({
+      pwdIcon: "../../../images/icon/password.png"
+    })
+  },
+  /*
+ * 验证码获取焦点
+ */
+ codeFocus: function () {
+    this.setData({
+      verifiIcon: "../../../images/icon/verification_sel.png"
+    })
+  },
+  /*
+ *  验证码失去焦点
+ */
+    codeBlur: function () {
+    this.setData({
+      verifiIcon: "../../../images/icon/verification.png"
+    })
   },
   onReady: function () {
     // // 页面渲染完成

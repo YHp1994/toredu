@@ -1,30 +1,32 @@
 <!--pages/tab-mine/sign/sign.wxml-->
 <view class="content">
-    <view class = "logo">
-        <image mode="aspectFit" src="/images/logo.png"></image>
+   <view  bindtap="bindViewTap" class="userinfo">
+         <image class="userinfo-avatar" src="/images/login_logo.png" background-size="cover"></image>
+         <text class="">土龟网</text>
     </view>
     <form bindsubmit="formSubmit">
         <view class="input-area">
         <view class="input-log">  
           <image class="userinfo-logIcon" src="{{logIcon}}"></image>  
-          <input id="username" name="username" maxlength='11' type="text" placeholder="手机号" />
+          <input id="username" name="username" maxlength='11' type="text" placeholder="手机号" bindfocus="phoneFocus" bindblur="phoneBlur" />
         </view>  
-          <view class="smsCode">
-            <image class="userinfo-verifiIcon" src="{{verifiIcon}}"></image>
-            <input id="smsCode" name="smsCode" maxlength='6' type="text" placeholder="验证码" />
+          <view class="smsCode ">
+          <view class="wrap">
+            <image class="userinfo-logIcon" src="{{verifiIcon}}"></image>
+            <input id="smsCode" name="smsCode" maxlength='6' type="text" placeholder="验证码" bindfocus="codeFocus" bindblur="codeBlur"  />
+            </view>
             <image src="{{codeMsgUrl}}" class="getSmsCodeBtn"  bindtap = "getSmsCode"></image>
           </view>
 
           <view class="input-log">  
             <image class="userinfo-logIcon" src="{{pwdIcon}}"></image>  
-            <input id="password" name="password" maxlength='20' type="password" placeholder="密码" />
+            <input id="password" name="password" maxlength='20' type="password" placeholder="密码" bindfocus="pwdFocus" bindblur="pwdBlur"  />
           </view>
         </view>
         <view class="btn-area">
-            <button  disabled="{{registDisabled}}" style="background-color:{{registBtnBgBgColor}}"   formType="submit"  loading="{{btnLoading}}"> {{registBtnTxt}} </button>
+            <button  disabled="{{registDisabled}}"  formType="submit"  loading="{{btnLoading}}"> {{registBtnTxt}} </button>
             <view class="txt-area">
-                 <navigator redirect url="../forgetpwd/index"><text class="forgot-password">忘记密码？</text></navigator>
-                 <navigator redirect url="../login/index"><text class="register">登录账号</text></navigator>
+                 <navigator redirect url="../login/login"><text class="register">去登录</text></navigator>
             </view>
         </view>
     </form>

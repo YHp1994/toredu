@@ -1,14 +1,22 @@
 <!--ask.wxml-->
-<view class="page answer">
+<view class="page answer ">
 <view class="section">
   <form bindsubmit="bindFormSubmit">
     <!--<textarea placeholder="你输入你的提问标题" name="asktitle"/>-->
-    <textarea placeholder="你输入你的提问内容" name="content"/>
-    <text bindtap="chooseImg" class="chooseBtn">选择图片</text>
-     <block wx:for="{{imgsList}}"  wx:key="*this">
-     <image src="{{item}}" class="chooseImg"  mode='widthFix'></image>
+    <textarea placeholder="请输入不超过200字的内容…" name="content"/>
+    <view class="updownpic">
+    <block wx:for="{{imgsList}}"  wx:key="{{index}}">
+     <view class="imagegroup">
+        <image src="{{item}}" class="chooseImg"  mode='aspectFill'></image>     
+        <view class="delicon" bindtap="delImgTap" data-index='{{index}}'>
+          <image src="/images/icon/question_delete.png"></image>
+        </view>
+     </view>
     </block>
-    <button form-type="submit"> 提交 </button>
+    <view class="chooseBtn"  hidden="{{hidden}}"> <image bindtap="chooseImg" class="" src="/images/icon/question_add.png"></image></view> 
+  </view>
+    
+    <button form-type="submit"> 发布 </button>
   </form>
 </view>
   <!--<modal title="消息" confirm-text="确认" cancel-text="关闭" hidden="{{modalHidden}}" bindconfirm="confirmChange" bindcancel="cancelChange">

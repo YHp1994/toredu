@@ -1,20 +1,30 @@
 /* pages/aquare/aquare.wxss */
+page{
+  background: #f1f1f1;
+}
+.search-wrap{
+    background: #ffb83d;
+    padding: 16rpx 0;
+}
 .search{
-  width: 700rpx;
-  height: 65rpx;
+  width: 716rpx;
+  height: 56rpx;
   border-radius: 12rpx;
-  margin: 20rpx auto;
-  border: 1px solid #e5e5e5;
+  margin: 0 auto;
+  background: #fff;
+  text-align: center;
+  color: #b2b2b2;
 }
 .search image{
-  width: 50rpx;
-  height: 50rpx;
-  vertical-align: middle;
-  margin: 7rpx 10rpx 0 10rpx;
+  width: 30rpx;
+  height: 30rpx;
+   vertical-align: middle; 
+  margin: 0rpx 10rpx 0 10rpx;
 }
 .search text{
+  font-size: 26rpx;
   vertical-align: middle;
-  line-height: 65rpx;
+  line-height: 56rpx;
 }
 /*列表 list*/
 .scroll-posts-list{
@@ -23,20 +33,20 @@
 .posts-list{
   position: relative;
   overflow: hidden;
-  padding: 0 30rpx;
-  border-bottom: 1rpx solid #80bd01;
+  padding: 0 36rpx;
+  background: #fff;
+  margin-top: 16rpx;
 }
 .posts-list-info{
   overflow: hidden;
   display: flex;
   margin-top: 30rpx;
   padding-bottom: 20rpx;
-  border-bottom: 1rpx solid #eee;
 }
 .posts-list-info .userimg{
   overflow: hidden;
-  width: 100rpx;
-  height: 100rpx;
+  width: 60rpx;
+  height: 60rpx;
   border-radius: 50%;
 }
 .posts-list-info .item-box{
@@ -49,13 +59,15 @@
 .posts-list-info .item-box .userinfo .username,
 .posts-list-info .item-box .userinfo .time{
   flex: 1;
+  color: #b2b2b2;
+  font-size: 28rpx;
+  line-height: 60rpx;
 }
-
-.posts-list-info .item-box .posts-title{
+.item-box .posts-title{
   height: 80rpx;
   margin: 20rpx 0;
   font-size: 30rpx;
-  color: #35495e;
+  color: #000000;
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -92,10 +104,11 @@
 .posts-list .bar-info .bar-info-item-number{
   display: inline-block;
   vertical-align: middle;
+  color: #ffb83d;
 }
 .posts-list .bar-info .time{
   float: right;
-  color: #555;
+  color: #b2b2b2;
   vertical-align: middle;
   margin-right: 0;
 }

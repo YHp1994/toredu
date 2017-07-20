@@ -30,6 +30,9 @@ var t_login = THOST + '/sys/login';
 var t_question = THOST + '/faq/question';
 //全部问题列表 get /faq/questionList
 var t_questionList = THOST + '/faq/questionList';
+// https://app.toredu.com/small/application/faq/questionDetail
+// 问题详情 get /faq/questionDetail
+var t_questionDetail = THOST + 'faq/questionDetail';
 
 
 
@@ -188,6 +191,8 @@ module.exports = {
  t_question: t_question,
  //全部问题列表 get /faq/questionList
  t_questionList: t_questionList,
+ // 问题详情 get /faq/questionDetail
+ t_questionDetail: t_questionDetail,
 
 
  requestPostApi: requestPostApi,

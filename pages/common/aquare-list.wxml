@@ -1,29 +1,29 @@
 <!--列表list组件 -->
 <template name="aquare-list">
-<scroll-view class="scroll-posts-list"  scroll-y="true" style="height:100%"  bindscrolltolower="lower">
+<scroll-view class="scroll-posts-list"  scroll-y="true" style="height:100%"  bindscrolltolower="lower" bindscrolltoupper="upper">
   <view class="postslist">
-    <block wx:for="{{postsList}}"  wx:key="">
+    <block wx:for="{{postsList1}}"  wx:key="">
       <view class="posts-list">
-        <navigator url="/pages/tab-aquare/detail/detail?id={{item.id}}">
+        <navigator url="/pages/tab-aquare/detail/detail?id={{item.questionID}}">
           <view class="posts-list-info" index="{{index}}">
-              <image class="userimg" src="{{item.author.avatar_url}}" />
+              <image class="userimg" src="{{item.face}}" />
               <view class="item-box">
                 <view class="userinfo">
-                  <text class="username">{{item.author.loginname}}</text>
+                  <text class="username">{{item.memberName}}</text>
                 </view>
-                <view class="posts-title">
-                  <view class="posts-tag hot" wx:if="{{item.top === true}}">置顶</view>
-                  <text>{{item.title}}</text>
-                </view>
+                
               </view>
           </view>
+          <view class="posts-title">
+                  <view class="posts-tag hot" wx:if="{{item.top === true}}">置顶</view>
+                  <text>{{item.question}}</text>
+         </view>
           <view class="bar-info">
             <view class="bar-info-item">
-              <image class="bar-info-item-icon" src="/images/icon/reply.png"></image>
-              <view class="bar-info-item-number">{{item.reply_count}}人回答</view>
+              <view class="bar-info-item-number">{{item.answerTimes}}人回答</view>
             </view>
             <view class="bar-info-item time">
-              <text class="">{{item.last_reply_at}}</text>
+              <text class="">{{item.faqTime}}</text>
             </view>
           </view>
       </navigator>

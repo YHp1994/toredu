@@ -1,22 +1,31 @@
 /* pages/tab-mine/sign/sign.wxss */
 @import "../login/login.wxss";
 .smsCode {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid #ddd;
-  padding-right: 10%;
+    display:flex;
+    flex-direction:row;
+    width:690rpx;
+    height:88rpx;
+    line-height:88rpx;
+    margin:0 auto 38rpx;
+    justify-content: space-between;
 }
-.smsCode input {
-  width: 336rpx;
+.smsCode .wrap {
+  width: 383rpx;
+  height: 88rpx;
+  border: 1px solid #ffb83d;
+  border-radius: 10rpx;
+  display: flex;
+}
+.smsCode .wrap image{
+  width: 80rpx;
+  height: 40rpx;
 }
 .smsCode .getSmsCodeBtn {
   font-size: 30rpx;
-  width: 216rpx;
+  width: 246rpx;
   box-sizing: border-box;
-  height: 80rpx;
-  line-height: 80rpx;
-  margin-top: 10rpx;
-  margin-right: 0;
+  height: 88rpx;
+  margin-top: 2rpx;
 }
 .logo {
   margin-top: 80rpx;

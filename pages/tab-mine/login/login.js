@@ -4,13 +4,12 @@ var app = getApp();
 Page({
   data: {
     loginBtnTxt: "登录",
-    loginBtnBgBgColor: "#f28820",
     btnLoading: false,
     disabled: false,
     error: "",
     avatarUrl: "../../../images/timg.png",
-    logIcon: "../../../images/logIcon.png",
-    pwdIcon: "../../../images/pwdIcon.png"
+    logIcon: "../../../images/icon/login.png",
+    pwdIcon: "../../../images/icon/password.png"
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
@@ -21,6 +20,38 @@ Page({
       that.setData({
         userInfo: userInfo
       })
+    })
+  },
+  /*
+  *  手机号获取焦点
+  */
+  phoneFocus:function(){
+    this.setData({
+      logIcon: "../../../images/icon/login_sel.png"
+    })
+  },
+  /*
+ *  手机号失去焦点
+ */
+  phoneBlur: function () {
+    this.setData({
+      logIcon: "../../../images/icon/login.png"
+    })
+  },
+  /*
+  *  密码获取焦点
+  */
+  pwdFocus: function () {
+    this.setData({
+      pwdIcon: "../../../images/icon/password_sel.png"
+    })
+  },
+  /*
+ *  密码失去焦点
+ */
+  pwdBlur: function () {
+    this.setData({
+      pwdIcon: "../../../images/icon/password.png"
     })
   },
   onReady: function () {

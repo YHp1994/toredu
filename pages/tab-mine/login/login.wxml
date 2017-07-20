@@ -1,24 +1,25 @@
 <!--pages/tab-mine/login/login.wxml-->
 <view class="content">
     <view  bindtap="bindViewTap" class="userinfo">
-         <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+         <image class="userinfo-avatar" src="/images/login_logo.png" background-size="cover"></image>
+
+         <text class="">土龟网</text>
     </view>
     <form bindsubmit="formSubmit">
         <view class="input-area">
           <view class="input-log">  
             <image class="userinfo-logIcon" src="{{logIcon}}"></image>  
-            <input id="username" name="username" maxlength='40' type="text" placeholder="邮箱/手机号" />
+            <input id="username" name="username" maxlength='40' type="text" placeholder="手机号" bindfocus="phoneFocus" bindblur="phoneBlur" />
           </view>
           <view class="input-log">
             <image class="userinfo-logIcon" src="{{pwdIcon}}"></image>  
-            <input id="password" name="password" maxlength='20' type="password" placeholder="密码" />
+            <input id="password" name="password" maxlength='20' type="password" placeholder="密码" bindfocus="pwdFocus" bindblur="pwdBlur" />
           </view>
         </view>
         <view class="btn-area">
-            <button  disabled="{{disabled}}" style="background-color:{{loginBtnBgBgColor}}"   formType="submit"  loading="{{btnLoading}}"> {{loginBtnTxt}} </button>
+            <button  disabled="{{disabled}}"  formType="submit"  loading="{{btnLoading}}"> {{loginBtnTxt}} </button>
             <view class="txt-area">
-                <navigator redirect url="../forgetpwd/index"><text class="forgot-password">忘记密码？</text></navigator>
-                <navigator redirect url="../sign/sign"><text class="register">注册账号</text></navigator> 
+                <navigator redirect url="../sign/sign"><text class="register">去注册</text></navigator> 
             </view>
         </view>
     </form>

@@ -1,15 +1,74 @@
 /* ask.wxss */
-.chooseImg{
-  width: 200rpx;
-  height: 200rpx;
+page{
+  background-color: #f1f1f1;
+  height: 100%;
 }
-.chooseBtn{
-  width: 216rpx;
-  height: 80rpx;
-  text-align: center;
-  line-height: 80rpx;
-  color: #f25810;
+.section textarea{
+  width: 100%;
+  min-height: 267rpx;
+  background-color: #ffffff;
+  padding: 40rpx;
+  box-sizing: border-box;
+}
+.updownpic{
+  padding: 0rpx 0rpx 40rpx 30rpx;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #ffffff;
+   display: flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+
+}
+.imagegroup{
+  width: 150rpx;
+  height: 150rpx;
+  position: relative;
+  margin-right: 28rpx;
+  margin-bottom: 30rpx;
+
+}
+.imagegroup text{
+  position: absolute;
+  right: 0;
+  top: -40rpx;
+  color: #ff0000;
+}
+.chooseImg{
+  width: 150rpx;
+  height: 150rpx;
+  margin-right: 26rpx;
+  margin-bottom: 30rpx;
+}
+.chooseBtn,.chooseBtn image{
+  width: 150rpx;
+  height: 150rpx;margin-right: 26rpx;
+  margin-bottom: 30rpx;
+}
+.clearfix:after {
+  content: ".";
   display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+  button{
+  width: 690rpx;
+  height: 88rpx;
+  line-height: 88rpx;
   margin: 0 auto;
-  background: rgba(251, 200, 30, 0.3)
+  background: #ffb83d;
+  padding: 0;
+  color: #fff;
+  font-size: 36rpx;
+  margin-top: 40rpx;
+}
+.delicon{
+  position: absolute;
+  right: -20rpx;
+  top: -20rpx;
+}
+.delicon image{
+  width: 54rpx;
+  height: 54rpx;
 }

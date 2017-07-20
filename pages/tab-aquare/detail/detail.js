@@ -8,7 +8,9 @@ Page({
     detail: {},
     hidden: false,
     modalHidden: true,
-    topic_id: ""
+    topic_id: "",
+    page: 1,
+    limit: 8
   },
 
   onLoad: function (options) {
@@ -19,22 +21,51 @@ Page({
   // 获取数据
   fetchData: function (id) {
     var that = this;
-    var ApiUrl = Api.topic + '/' + id + '?mdrender=false';
+    var ApiUrl1 = Api.t_questionDetail + '?pageNo=' + this.data.page + '&questionID=' + id;
+    console.log(ApiUrl1)
+    var ApiUrl = Api.t_questionDetail;
     that.setData({
       hidden: false
     });
-    Api.fetchGet(ApiUrl, (err, res) => {
-      res.data.create_at = util.getDateDiff(new Date(res.data.create_at));
-      res.data.replies = res.data.replies.map(function (item) {
-        item.create_at = util.getDateDiff(new Date(item.create_at));
-        item.zanNum = item.ups.length;
-        return item;
-      })
-      that.setData({ detail: res.data });
-      setTimeout(function () {
-        that.setData({ hidden: true });
-      }, 300);
-    })
+    console.log(ApiUrl)
+    // Api.fetchGet(ApiUrl, (err, res) => {
+    //   res.data.create_at = util.getDateDiff(new Date(res.data.create_at));
+    //   res.data.replies = res.data.replies.map(function (item) {
+    //     item.create_at = util.getDateDiff(new Date(item.create_at));
+    //     item.zanNum = item.ups.length;
+    //     return item;
+    //   })
+    //   that.setData({ detail: res.data });
+    //   setTimeout(function () {
+    //     that.setData({ hidden: true });
+    //   }, 300);
+    // })
+    /**
+      * 
+      *  调用校验码接口
+      * requestGetApi(url, params, sourceObj, successFun, failFun, completeFun)
+      */
+    Api.requestGetApi(ApiUrl, { pageNo: 1, questionID:id}, this, this.sucesstDetail, this.failDetail);
+    // Api.fetchGet(ApiUrl, (err, res) => {
+    //   console.log(res)
+      // res.data.create_at = util.getDateDiff(new Date(res.data.create_at));
+      // res.data.replies = res.data.replies.map(function (item) {
+      //   item.create_at = util.getDateDiff(new Date(item.create_at));
+      //   item.zanNum = item.ups.length;
+      //   return item;
+      // })
+      // that.setData({ detail: res.data });
+      // setTimeout(function () {
+      //   that.setData({ hidden: true });
+      // }, 300);
+    // })
+  },
+  sucesstDetail: function (res, selfObj){
+    console.log('sucess',res);
+    console.log(selfObj)
+  },
+  failDetail:function(res, selfObj){
+    console.log('fail',res)
   },
 
 

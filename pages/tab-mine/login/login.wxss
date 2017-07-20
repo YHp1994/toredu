@@ -4,25 +4,23 @@
 }
 
 .userinfo {
-  margin-top: 100rpx;
-  margin-bottom: 100rpx;
+  margin-top: 30rpx;
+  margin-bottom: 38rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #949699;
+  font-size: 26rpx;
 }
-
 .userinfo-avatar {
-  width: 150rpx;
-  height: 150rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+  width: 130rpx;
+  height: 130rpx;
 }
 
 .userinfo-logIcon{
-  width: 60rpx;
-  height: 60rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+  width: 40rpx;
+  height: 40rpx;
+  margin: 27rpx 24rpx 0rpx 35rpx;
 }
 
 .userinfo-verifiIcon{
@@ -34,24 +32,30 @@
 
 .input-log{
   display: flex;
-  border-bottom: 1px solid #ddd;
   flex-direction: row;
+  width: 690rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  border: 1px solid #ffb83d;
+  margin: 0 auto 38rpx;
+  border-radius: 10rpx;
 }
 
 .input-area {
   background-color: #fff;
   text-align: left;
-  border-top: 1px solid #ddd;
+  font-size: 34rpx;
+  color: #000000;
 }
 
 .input-area input {
-  height: 100rpx;
-  line-height: 100rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  width: 600rpx;
 }
 
 .btn-area {
-  width: 80%;
-  margin: 0 auto;
+  margin: 70rpx auto 0;
 }
 
 .btn-area button {
@@ -60,20 +64,32 @@
 }
 
 .txt-area {
-  margin-top: 30rpx;
-  display: flex;
-  justify-content: space-between;
+  margin-top: 10rpx;
   font-size: 30rpx;
+  text-align: center;
 }
-
-.forgot-password {
-  color: #888;
+.txt-area navigator{
+  display: block;
+  width: 260rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin:0 auto;
+}
+button{
+  width: 690rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  margin: 0 auto;
+  background: #ffb83d;
+  padding: 0;
+  color: #fff;
+  font-size: 36rpx;
 }
 
 .register {
-  color: #f90;
+  color: #888888;
+  text-align: center;
 }
-
-.forgot-password:active, .register:active {
+ .register:active {
   opacity: 0.7;
 }
