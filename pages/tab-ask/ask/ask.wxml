@@ -3,7 +3,10 @@
 <view class="section">
   <form bindsubmit="bindFormSubmit">
     <!--<textarea placeholder="你输入你的提问标题" name="asktitle"/>-->
-    <textarea placeholder="请输入不超过200字的内容…" name="content"/>
+    <textarea placeholder="请输入不超过200字的内容…" name="content" maxlength="200"  bindinput="valueChange"/>
+    <view class="input-count">
+      <text>{{typeNum}}</text><text class="cur">/200</text>
+    </view>
     <view class="updownpic">
     <block wx:for="{{imgsList}}"  wx:key="{{index}}">
      <view class="imagegroup">
@@ -16,10 +19,10 @@
     <view class="chooseBtn"  hidden="{{hidden}}"> <image bindtap="chooseImg" class="" src="/images/icon/question_add.png"></image></view> 
   </view>
     
-    <button form-type="submit"> 发布 </button>
+    <button form-type="submit" disabled="{{submitForm}}"> 发布 </button>
   </form>
 </view>
-  <!--<modal title="消息" confirm-text="确认" cancel-text="关闭" hidden="{{modalHidden}}" bindconfirm="confirmChange" bindcancel="cancelChange">
-    您还没未登录conde，是否前往认证登录？
-  </modal>-->
+   <modal title="提示信息" confirm-text="确认" cancel-text="关闭" hidden="{{modalHidden}}" bindconfirm="confirmChange" bindcancel="cancelChange">
+    登录后才能提问
+  </modal> 
 </view>

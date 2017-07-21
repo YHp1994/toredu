@@ -6,6 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    questionDetail:{},
+    detail:{},
     id: "",
     modalHidden: true
   },
@@ -16,41 +18,62 @@ Page({
   onLoad: function (options) {
     console.log(options.id);
     this.setData({ id: options.id });
+
+    var ApiUrlq = Api.t_questionDetail;
+    Api.requestGetApi(ApiUrlq, { pageNo: 1, questionID: options.id }, this, this.sucesstDetail, this.failDetail);
+  },
+  sucesstDetail: function (res, selfObj) {
+    console.log('sucess', res);
+    selfObj.setData({ detail: res.data });
   },
   bindFormSubmit: function (e) {
-    var content = e.detail.value.textarea;
+    var answer = e.detail.value.content;
     var that = this;
     var id = this.data.id;
     console.log(id);
-    var accesstoken = wx.getStorageSync('CuserInfo').accesstoken;
-    var index = e.currentTarget.dataset.index;
-    var ApiUrl = Api.answer(id);
-    // if (!id) return;
-    // if (!accesstoken) {
-    //   that.setData({ modalHidden: false });
-    //   return;
-    // }
-    console.log(ApiUrl)
-    Api.fetchPost(ApiUrl, { accesstoken: accesstoken, content: content }, (err, res) => {
-      console.log(res);
-      console.log(e.detail.value.textarea);
-      if (res.success) {
-        // var detail = that.data.detail;
-        // var replies = detail.replies[index];
 
-        // if (res.action === "up") {
-        //   replies.zanNum = replies.zanNum + 1;
-        // } else {
-        //   replies.zanNum = replies.zanNum - 1;
-        // }
-        console.log(res.success);
-        // that.setData({ detail: detail });
-        console.log(id);
-        wx.navigateTo({
-          url: '/pages/tab-aquare/detail/detail?id=' + id,
-        })
-      }
+    var CuserInfo = wx.getStorageSync('CuserInfo');
+    var memberID = CuserInfo.memberID;
+    var that = this;
+    var params = json2Form({memberID: memberID, answer: answer, questionID: id});
+
+    var ApiUrl = Api.t_answer;
+    /**
+     * 
+     *  调用问题详情接口
+     * requestGetApi(url, params, sourceObj, successFun, failFun, completeFun)
+     */
+    Api.requestPostApi(ApiUrl, params, this, this.sucesstAnswer, this.failAnswer);
+
+    // Api.fetchPost(ApiUrl, { accesstoken: accesstoken, content: content }, (err, res) => {
+    //   console.log(res);
+    //   console.log(e.detail.value.textarea);
+    //   if (res.success) {
+    //     // var detail = that.data.detail;
+    //     // var replies = detail.replies[index];
+
+    //     // if (res.action === "up") {
+    //     //   replies.zanNum = replies.zanNum + 1;
+    //     // } else {
+    //     //   replies.zanNum = replies.zanNum - 1;
+    //     // }
+    //     console.log(res.success);
+    //     // that.setData({ detail: detail });
+    //     console.log(id);
+    //     wx.navigateTo({
+    //       url: '/pages/tab-aquare/detail/detail?id=' + id,
+    //     })
+    //   }
+    // })
+  },
+  sucesstAnswer:function(res,selfObj){
+    console.log('提交成功',res)
+    wx.navigateTo({
+      url: '/pages/tab-aquare/detail/detail?id=' + selfObj.data.id,
     })
+  },
+  failAnswer:function(){
+    console.log(fail);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -112,3 +135,10 @@ Page({
     });
   }
 })
+function json2Form(json) {
+  var str = [];
+  for (var p in json) {
+    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(json[p]));
+  }
+  return str.join("&");
+} 

@@ -11,7 +11,10 @@ Page({
     imgsList:[],
     imgLen: 0,
     hidden: false,
-    count:6
+    count:6,
+    typeNum:0,
+    modalHidden: true,
+    submitForm:true
   },
 
   /**
@@ -20,10 +23,24 @@ Page({
   onLoad: function (options) {
     // console.log(this.data.imgsList.length)
   },
+  valueChange:function(e){
+    this.setData({
+      typeNum: e.detail.value.length
+    })
+    if (e.detail.value.length>10){
+      this.setData({
+        submitForm: false
+      })
+    }
+  },
   /**
    * 上传图片
    */
   chooseImg: function () {//这里是选取图片的方法
+    if (!wx.getStorageSync('CuserInfo')){
+    this.setData({ modalHidden: false });
+    return ;
+  }
     var that = this;
     var countNum = this.data.count;
     if (countNum<=0){
@@ -66,27 +83,32 @@ Page({
     }
     },
     bindFormSubmit: function (e) {
-     var that = this;
-     var CuserInfo = wx.getStorageSync('CuserInfo');
-     var ApiUrl = Api.t_question;
-     var memberID = CuserInfo.memberID;
-     var question = e.detail.value.content;
-     if (this.data.imgsList.length == 0){
-      var params = json2Form({ memberID: memberID, question: question });
-      /**
-      * 
-      *  调用登录接口
-      * requestPostApi(url, params, sourceObj, successFun, failFun, completeFun)
-      */
-      Api.requestPostApi(ApiUrl, params, this, this.sucessAsk);
-      
-     }else{
-       uploadimg({
-         url:  ApiUrl,//这里是你图片上传的接口
-         path: that.data.imgsList//这里是选取的图片的地址数组
-       },memberID,question);
-       wx.hideLoading();
-     }
+      if (!wx.getStorageSync('CuserInfo')){
+        this.setData({ modalHidden: false });
+        return;
+      }
+        var that = this;
+        var CuserInfo = wx.getStorageSync('CuserInfo');
+        var ApiUrl = Api.t_question;
+        var memberID = CuserInfo.memberID;
+        var question = e.detail.value.content;
+        if (this.data.imgsList.length == 0) {
+          var params = json2Form({ memberID: memberID, question: question });
+          /**
+          * 
+          *  调用登录接口
+          * requestPostApi(url, params, sourceObj, successFun, failFun, completeFun)
+          */
+          Api.requestPostApi(ApiUrl, params, this, this.sucessAsk);
+
+        } else {
+          uploadimg({
+            url: ApiUrl,//这里是你图片上传的接口
+            path: that.data.imgsList//这里是选取的图片的地址数组
+          }, memberID, question);
+          wx.hideLoading();
+        }
+   
     },
     sucessAsk: function (res, selfObj){
         console.log(res);
@@ -153,6 +175,17 @@ Page({
    */
   onShareAppMessage: function () {
   
+  }, 
+  // 关闭--模态弹窗
+  cancelChange: function () {
+    this.setData({ modalHidden: true });
+  },
+  // 确认--模态弹窗
+  confirmChange: function () {
+    this.setData({ modalHidden: true });
+    wx.navigateTo({
+      url: '/pages/tab-mine/login/login'
+    });
   }
 })
 //多张图片上传

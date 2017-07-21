@@ -33,6 +33,12 @@ var t_questionList = THOST + '/faq/questionList';
 // https://app.toredu.com/small/application/faq/questionDetail
 // 问题详情 get /faq/questionDetail
 var t_questionDetail = THOST + 'faq/questionDetail';
+//我要回答 post /faq/myAnswerQuestion
+var t_myAnswerQuestion = THOST + 'faq/myAnswerQuestion';
+//回答问题 post /faq/answer
+var t_answer = THOST + 'faq/answer';
+
+
 
 
 
@@ -193,7 +199,10 @@ module.exports = {
  t_questionList: t_questionList,
  // 问题详情 get /faq/questionDetail
  t_questionDetail: t_questionDetail,
-
+//我要回答
+ t_myAnswerQuestion:t_myAnswerQuestion,
+ //回答问题
+ t_answer: t_answer,
 
  requestPostApi: requestPostApi,
  requestGetApi: requestGetApi

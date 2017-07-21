@@ -1,8 +1,11 @@
 <!--pages/answer/answer.wxml-->
 <view class="page answer">
+<view class="detail-post-content">
+    <text class="content-info">{{ detail.questionAnswerList.question }}</text>
+</view>
 <view class="section">
   <form bindsubmit="bindFormSubmit">
-    <textarea placeholder="你输入你的回答" name="textarea"/>
+    <textarea placeholder="请输入不超过200字的回答内容..." name="textarea"/>
     <button form-type="submit"> 提交 </button>
   </form>
 </view>

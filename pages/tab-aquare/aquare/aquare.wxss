@@ -37,6 +37,14 @@ page{
   background: #fff;
   margin-top: 16rpx;
 }
+.posts-list .posts-title{
+  display: -webkit-box ;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:2; 
+}
 .posts-list-info{
   overflow: hidden;
   display: flex;

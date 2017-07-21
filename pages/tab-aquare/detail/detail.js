@@ -28,41 +28,16 @@ Page({
       hidden: false
     });
     console.log(ApiUrl)
-    // Api.fetchGet(ApiUrl, (err, res) => {
-    //   res.data.create_at = util.getDateDiff(new Date(res.data.create_at));
-    //   res.data.replies = res.data.replies.map(function (item) {
-    //     item.create_at = util.getDateDiff(new Date(item.create_at));
-    //     item.zanNum = item.ups.length;
-    //     return item;
-    //   })
-    //   that.setData({ detail: res.data });
-    //   setTimeout(function () {
-    //     that.setData({ hidden: true });
-    //   }, 300);
-    // })
     /**
       * 
-      *  调用校验码接口
+      *  调用问题详情接口
       * requestGetApi(url, params, sourceObj, successFun, failFun, completeFun)
       */
     Api.requestGetApi(ApiUrl, { pageNo: 1, questionID:id}, this, this.sucesstDetail, this.failDetail);
-    // Api.fetchGet(ApiUrl, (err, res) => {
-    //   console.log(res)
-      // res.data.create_at = util.getDateDiff(new Date(res.data.create_at));
-      // res.data.replies = res.data.replies.map(function (item) {
-      //   item.create_at = util.getDateDiff(new Date(item.create_at));
-      //   item.zanNum = item.ups.length;
-      //   return item;
-      // })
-      // that.setData({ detail: res.data });
-      // setTimeout(function () {
-      //   that.setData({ hidden: true });
-      // }, 300);
-    // })
   },
   sucesstDetail: function (res, selfObj){
     console.log('sucess',res);
-    console.log(selfObj)
+    selfObj.setData({ detail: res.data });
   },
   failDetail:function(res, selfObj){
     console.log('fail',res)
@@ -93,27 +68,23 @@ Page({
         } else {
           replies.zanNum = replies.zanNum - 1;
         }
-
         that.setData({ detail: detail });
-
       }
     })
 
   },
   // 回答
   answer: function (e) {
-    console.log(e);
-    var that = this;
-    var accesstoken = wx.getStorageSync('CuserInfo').accesstoken;
-    var id = this.data.topic_id;
-    console.log(id);
-    var index = e.currentTarget.dataset.index;
-    var ApiUrl = Api.reply(id);
-    if (!id) return;
-    if (!accesstoken) {
-      that.setData({ modalHidden: false });
+    if (!wx.getStorageSync('CuserInfo')) {
+      this.setData({ modalHidden: false });
       return;
     }
+    var CuserInfo = wx.getStorageSync('CuserInfo');
+    var memberID = CuserInfo.memberID;
+    var that = this;
+    var id = this.data.detail.questionAnswerList.questionID;
+    var index = e.currentTarget.dataset.index;
+    if (!id) return;
     wx.navigateTo({
       url: '/pages/tab-aquare/answer/answer?id=' + id,
     })
