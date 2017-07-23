@@ -36,7 +36,10 @@ Page({
     Api.requestGetApi(ApiUrl, { pageNo: 1, questionID:id}, this, this.sucesstDetail, this.failDetail);
   },
   sucesstDetail: function (res, selfObj){
-    console.log('sucess',res);
+    console.log('sucess', res.data.questionAnswerList.answerList);
+    res.data.questionAnswerList.answerList.forEach((el,index)=>{
+      el.answerTime = util.getDateDiff(el.answerTime)
+    })
     selfObj.setData({ detail: res.data });
   },
   failDetail:function(res, selfObj){

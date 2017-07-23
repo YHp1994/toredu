@@ -2,7 +2,7 @@
   height: 100%;
 }
 .detail-post-comment-list{
-  margin-bottom: 140rpx;
+  background: #fff;
 }
 .detail-post-meta{
   padding: 0rpx 35rpx 20rpx 35rpx;
@@ -10,7 +10,7 @@
   align-items: center;
 }
 .detail-post-avatar{
-  margin-right: 20rpx;
+  margin-right: 30rpx;
 }
 
 .detail-post-time{
@@ -20,16 +20,16 @@
 }
 
 .detail-post-avatar-img{
-  width: 70rpx;
-  height: 70rpx;
+  width: 60rpx;
+  height: 60rpx;
   border-radius: 50%;
 }
 .detail-post-info{
   flex: 1;
 }
 .detail-post-author-name{
-  color: #ffb83d;
-  font-size: 26rpx;
+  color: #b2b2b2;
+  font-size: 28rpx;
   float: left;
 }
 
@@ -104,7 +104,7 @@
 }
 
 .detail-post-comment-item{
-  display: flex;
+   /* display: flex;  */
 }
 .detail-post-comment-title{
   position: relative;
@@ -113,6 +113,7 @@
   font-size: 30rpx;
   border-bottom: 1px #eee solid;
   color: #b2b2b2;
+  background: #fff;
 }
 
 .detail-post-comment-avatar-img{
@@ -120,23 +121,28 @@
   height: 80rpx;
   border-radius: 50%;
 }
+.detail-post-comment-bottom,.detail-post-comment-top{
+  display: flex;
+}
 .detail-post-comment-cell{
   overflow: hidden;
-  flex: 1;
+  /* flex: 1; */
   margin-left: 20rpx;
+  line-height: 60rpx;
+  margin-top:10rpx;
 }
 .detail-post-comment {
-  background-color: #fff;
+  background-color: #f1f1f1;
 }
 .detail-post-comment-item {
-  padding: 30rpx 0;
-  margin: 0 30rpx;
+  padding: 30rpx 53rpx 18rpx;
   background: #fff;
-  border-bottom: 1px #eee solid;
+  margin-bottom:14rpx; 
 }
 
 .detail-post-comment-info{
-  display: flex;
+  /* display: flex; */
+  line-height: 60rpx; 
 }
 .detail-post-comment-info-cell{
   flex: 1;
@@ -149,7 +155,7 @@
 .detail-post-zan-num{
   display: inline-block;
   margin-left: 10rpx;
-  color: #888;
+  color: #b2b2b2;
 }
 
 .detail-post-comment-time{
@@ -157,6 +163,7 @@
   color: #666;
 }
 .detail-comment-content{
+  padding: 10rpx 0 0 0rpx; 
 }
 .detail-comment-text {
   overflow: hidden;
@@ -168,8 +175,10 @@
 
 
 .detail-post-comment-null{
-  margin: 50rpx auto;
+  margin: 0rpx auto;
+  padding: 50rpx 0;
   text-align: center;
+  background: #fff;
 }
 .detail-post-comment-null .imgnull{
   margin: 140rpx auto;

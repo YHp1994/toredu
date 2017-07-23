@@ -27,7 +27,7 @@ Page({
     selfObj.setData({ detail: res.data });
   },
   bindFormSubmit: function (e) {
-    var answer = e.detail.value.content;
+    var answer = e.detail.value.textarea;
     var that = this;
     var id = this.data.id;
     console.log(id);

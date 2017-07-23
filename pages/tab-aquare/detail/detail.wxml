@@ -1,6 +1,6 @@
 <!-- detail -->
 <page class="page detail">
- <view class="detail-post-content">
+  <view class="detail-post-content">
     <text class="content-info">{{ detail.questionAnswerList.question }}</text>
   </view>
   <view class="detail-post-meta">
@@ -13,14 +13,14 @@
       </view>
       <view class="detail-post-time">{{ detail.questionAnswerList.faqTime }}</view>
     </view>
-     
+
   </view>
   <view class="img-group">
-   <block wx:for="{{ detail.questionAnswerList.questionExtList }}" wx:if="{{detail.questionAnswerList.questionExtList.length > 0}}">  
-     <view class="imgwrap" index="{{index}}">
-      <image src="https://app.toredu.com/{{detail.questionAnswerList.questionExtList[index].fileSimpleUrl}}"   mode='aspectFill' ></image>
-     </view>
-     </block>
+    <block wx:for="{{ detail.questionAnswerList.questionExtList }}" wx:if="{{detail.questionAnswerList.questionExtList.length > 0}}">
+      <view class="imgwrap" index="{{index}}">
+        <image src="https://app.toredu.com/{{detail.questionAnswerList.questionExtList[index].fileSimpleUrl}}" mode='aspectFill'></image>
+      </view>
+    </block>
   </view>
   <!-- <view class="detail-post-header">
 
@@ -29,48 +29,58 @@
     </view>
   </view>  -->
 
- 
+
 
   <view class="detail-post-comment">
     <view class="detail-post-comment-title">全部回答（{{detail.questionAnswerList.answerTimes}}）</view>
     <view class="detail-post-comment-list">
-      <block wx:for="{{ detail.questionAnswerList }}" wx:if="{{detail.questionAnswerList.answerTimes > 0}}">
-        <view class="detail-post-comment-item" index="{{index}}" id="{{item.id}}">
-          <view class="detail-post-comment-avatar">
-            <image class="detail-post-comment-avatar-img" mode="scaleToFill" src="{{ item.author.avatar_url }}"></image>
-          </view>
-          <view class="detail-post-comment-cell">
-            <view class="detail-post-comment-info">
-              <view class="detail-post-comment-info-cell">
-                <view class="detail-post-comment-author-name">{{ item.author.loginname }}</view>
-                <view class="detail-post-comment-time">{{index + 1}}楼 发表于{{ item.create_at }}</view>
-              </view>
-              <view class="detail-post-comment-info-cell" style="text-align:right" id="{{item.id}}" data-index="{{index}}" catchtap="reply">
-                <image class="detail-post-zan" mode="scaleToFill" src="/images/icon/zan.png"></image>
-                <text class="detail-post-zan-num" wx:if="{{item.zanNum > 0}}">{{item.zanNum}}</text>
-              </view>
+      <block wx:for="{{ detail.questionAnswerList.answerList }}" wx:if="{{detail.questionAnswerList.answerTimes > 0}}">
+        <view class="detail-post-comment-item" index="{{index}}" id="{{item.answerID}}">
+          <view class="detail-post-comment-top">
+            <view class="detail-post-comment-avatar">
+              <image class="detail-post-comment-avatar-img" mode="scaleToFill" src="{{ item.face }}"></image>
             </view>
-            <view class="detail-comment-content">
-              <text class="detail-comment-text">{{ item.content }}</text>
+            <view class="detail-post-comment-cell">
+              <view class="detail-post-comment-info">
+                <text class="detail-post-comment-author-name">{{ item.memberName }}</text>
+
+
+
+              </view>
+
+              
+
+
+            </view>
+          </view>
+<view class="detail-comment-content">
+                <text class="detail-comment-text">aaaaaaaaaa{{ item.answer }}</text>
+              </view>
+          <view class="detail-post-comment-bottom">
+
+            <view class="detail-post-comment-time">{{ item.answerTime }}</view>
+
+            <view class="detail-post-comment-info-cell" style="text-align:right" id="{{item.id}}" data-index="{{index}}" catchtap="reply">
+              <image class="detail-post-zan" mode="scaleToFill" src="/images/icon/zan.png"></image>
+              <text class="detail-post-zan-num" wx:if="{{item.zanNum > 0}}">{{item.zanNum}}</text>
             </view>
           </view>
         </view>
-        
       </block>
 
       <block wx:if="{{detail.questionAnswerList.answerTimes == 0}}">
         <view class="detail-post-comment-null">
           <image class="imgnull" mode="scaleToFill" src="/images/icon/question_empty.png"></image>
         </view>
-       
+
       </block>
-     <view class="detail-answer" id="{{detail.questionAnswerList.questionID}}" data-index="{{detail.questionAnswerList.questionID}}" catchtap="answer">
+      <view class="detail-answer" id="{{detail.questionAnswerList.questionID}}" data-index="{{detail.questionAnswerList.questionID}}" catchtap="answer">
         <text>我要回答</text>
-        </view>
+      </view>
     </view>
   </view>
 
-  
+
 
 
 
