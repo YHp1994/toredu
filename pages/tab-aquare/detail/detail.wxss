@@ -3,6 +3,7 @@
 }
 .detail-post-comment-list{
   background: #fff;
+  padding-bottom:140rpx;
 }
 .detail-post-meta{
   padding: 0rpx 35rpx 20rpx 35rpx;

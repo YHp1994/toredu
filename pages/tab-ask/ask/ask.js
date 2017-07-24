@@ -14,7 +14,8 @@ Page({
     count:6,
     typeNum:0,
     modalHidden: true,
-    submitForm:true
+    submitForm:true,
+    txtcontent:''
   },
 
   /**
@@ -96,7 +97,7 @@ Page({
           var params = json2Form({ memberID: memberID, question: question });
           /**
           * 
-          *  调用登录接口
+          *  调用提问接口
           * requestPostApi(url, params, sourceObj, successFun, failFun, completeFun)
           */
           Api.requestPostApi(ApiUrl, params, this, this.sucessAsk);
@@ -108,10 +109,23 @@ Page({
           }, memberID, question);
           wx.hideLoading();
         }
+        this.setData({
+          imgsList: [],
+          imgLen: 0,
+          hidden: false,
+          count: 6,
+          typeNum: 0,
+          modalHidden: true,
+          submitForm: true,
+          txtcontent: ''
+        })
    
     },
     sucessAsk: function (res, selfObj){
-        console.log(res);
+      console.log(res.questionID);
+      wx.redirectTo({
+        url: '/pages/tab-aquare/detail/detail?id=' + res.questionID,
+      })
     },
   /**
    * 删除图片
@@ -191,6 +205,7 @@ Page({
 //多张图片上传
 
 var qNum = '';
+var questionID = '';
 function uploadimg(data, memberID, question) {
   var that = this,
     i = data.i ? data.i : 0,
@@ -203,9 +218,16 @@ function uploadimg(data, memberID, question) {
     formData: { memberID: memberID, question: question, fileList: data.path[i],qNum:qNum},
     success: (res) => {
       success++;
-      if(res.data){
+      console.log(res);
+
+      if (success == 1){
+        questionID = JSON.parse(res.data).questionID
+        console.log(questionID);
+      }
+      if (res.data) {
         var data = JSON.parse(res.data);
         qNum = data.qNum;
+        console.log(qNum);
       }
     },
     fail: (res) => {
@@ -220,6 +242,9 @@ function uploadimg(data, memberID, question) {
         setTimeout(function () {
           wx.hideLoading()
         }, 2000)
+        wx.navigateTo({
+          url: '/pages/tab-aquare/detail/detail?id=' + questionID
+        })
       } else {//若图片还没有传完，则继续调用函数
         data.i = i;
         data.success = success;

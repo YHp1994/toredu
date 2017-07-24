@@ -9,7 +9,9 @@ Page({
     questionDetail:{},
     detail:{},
     id: "",
-    modalHidden: true
+    typeNum: 0,
+    modalHidden: true,
+    submitForm: true
   },
 
   /**
@@ -21,6 +23,16 @@ Page({
 
     var ApiUrlq = Api.t_questionDetail;
     Api.requestGetApi(ApiUrlq, { pageNo: 1, questionID: options.id }, this, this.sucesstDetail, this.failDetail);
+  }, 
+  valueChange: function (e) {
+    this.setData({
+      typeNum: e.detail.value.length
+    })
+    if (e.detail.value.length > 10) {
+      this.setData({
+        submitForm: false
+      })
+    }
   },
   sucesstDetail: function (res, selfObj) {
     console.log('sucess', res);
@@ -36,7 +48,7 @@ Page({
     var memberID = CuserInfo.memberID;
     var that = this;
     var params = json2Form({memberID: memberID, answer: answer, questionID: id});
-
+    console.log(params);
     var ApiUrl = Api.t_answer;
     /**
      * 
@@ -68,9 +80,35 @@ Page({
   },
   sucesstAnswer:function(res,selfObj){
     console.log('提交成功',res)
-    wx.navigateTo({
-      url: '/pages/tab-aquare/detail/detail?id=' + selfObj.data.id,
-    })
+    if (res.returnCode == "401"){
+        wx.showToast({
+          title: '不能自问自答',
+          icon: 'success',
+          duration: 2000
+        })
+        setTimeout(function(){
+          wx.navigateBack({
+            delta: 1
+          })
+        },2000)
+       
+    } else if (res.returnCode == "402"){
+      wx.showToast({
+        title: '每个问题只能回答一次',
+        icon: 'success',
+        duration: 2000
+      })
+      setTimeout(function () {
+        wx.navigateBack({
+          delta: 1
+        })
+      }, 2000)
+    }else{
+      wx.navigateTo({
+        url: '/pages/tab-aquare/detail/detail?id=' + selfObj.data.id,
+      })
+    }
+    
   },
   failAnswer:function(){
     console.log(fail);

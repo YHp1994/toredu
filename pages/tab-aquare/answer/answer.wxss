@@ -17,6 +17,9 @@ background: #f1f1f1;
   color: #000;
   word-wrap: break-word;
 }
+.section{
+  position: relative;
+}
 .section textarea{
   background: #ffffff;
   padding: 21rpx 32rpx;
@@ -24,6 +27,15 @@ background: #f1f1f1;
   height: 402rpx;
   box-sizing: border-box;
   margin-bottom: 32rpx;
+}
+
+.input-count {
+  position: absolute;
+  right: 35rpx;
+  bottom:135rpx;
+}
+.input-count .cur{
+  color: #b2b2b2;
 }
 button{
   width: 690rpx;

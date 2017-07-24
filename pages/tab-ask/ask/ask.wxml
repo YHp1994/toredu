@@ -3,7 +3,7 @@
 <view class="section">
   <form bindsubmit="bindFormSubmit">
     <!--<textarea placeholder="你输入你的提问标题" name="asktitle"/>-->
-    <textarea placeholder="请输入不超过200字的内容…" name="content" maxlength="200"  bindinput="valueChange"/>
+    <textarea placeholder="请输入不超过200字的内容…" name="content" maxlength="200"  bindinput="valueChange"  value="{{txtcontent}}"/>
     <view class="input-count">
       <text>{{typeNum}}</text><text class="cur">/200</text>
     </view>

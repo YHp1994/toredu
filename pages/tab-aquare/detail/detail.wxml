@@ -43,19 +43,12 @@
             <view class="detail-post-comment-cell">
               <view class="detail-post-comment-info">
                 <text class="detail-post-comment-author-name">{{ item.memberName }}</text>
-
-
-
               </view>
-
-              
-
-
             </view>
           </view>
-<view class="detail-comment-content">
-                <text class="detail-comment-text">aaaaaaaaaa{{ item.answer }}</text>
-              </view>
+          <view class="detail-comment-content">
+            <text class="detail-comment-text">{{ item.answer }}</text>
+          </view>
           <view class="detail-post-comment-bottom">
 
             <view class="detail-post-comment-time">{{ item.answerTime }}</view>

@@ -10,14 +10,15 @@
 </view> -->
 
 <view class="page me">
-    <view class="userinfo">
+   
+     <view class="userinfo" wx:if="{{islogin == false}}">
+      <view class="userinfo-avatar"><image class="userinfo-avatar-image" src="/images/bar/mineSL.png" background-size="cover"></image></view>
+      <navigator url="/pages/tab-mine/login/login"><text class="userinfo-nickname">请登录</text></navigator>
+    </view> 
+     <view class="userinfo"  wx:if="{{islogin == true}}">
       <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.avatarUrl}}</text>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-      <!-- <view class="usermotto">
-        <text class="user-motto">{{motto}}</text>
-      </view> -->
-    </view>
+    </view> 
 
     <navigator url="/pages/tab-mine/login/login" wx:if="{{islogin == false}}">
       <view class="view-cell view-cell-line">
