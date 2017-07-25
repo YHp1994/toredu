@@ -24,7 +24,7 @@
     "color": "#b2b2b2",
     "selectedColor": "#ffb83d",
     "backgroundColor": "#fff",
-    "borderStyle": "white",
+    "borderStyle": "black",
     "list": [
       {
         "pagePath": "pages/tab-aquare/aquare/aquare",

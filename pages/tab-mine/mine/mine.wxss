@@ -1,6 +1,10 @@
 /**index.wxss**/
+page{
+  height: 100%;
+}
 .me{
   height: 100%;
+  background: #f1f1f1;
 }
 .userinfo{
   position: relative;
@@ -10,6 +14,7 @@
   color: #fff;
   display: flex;
   align-items: center;
+  margin-bottom: 30rpx;
 }
 .userinfo-avatar {
   width: 120rpx;
@@ -39,25 +44,31 @@
 .about{
 
 }
-.about-work{
 
-}
-
-.about-item{
-  padding:10rpx 30rpx;
-}
-.about-item-title{
-  display: block;
-  font-size: 32rpx;
-  line-height: 60rpx;
-}
-.about-item-content{
-  margin-top: 10rpx;
-  display: block;
-  text-indent: 40rpx;
-}
-
-.link{
-  color: #80bd01;
-  text-decoration: underline;
+.swiper-tab{  
+    width: 100%;  
+    border-bottom: 4rpx solid #f1f1f1;  
+    text-align: center;  
+    line-height: 88rpx;
+    background: #fff;
+    font-size: 34rpx;
+    height: 88rpx;
+}  
+.swiper-tab-list{  font-size: 30rpx;  
+    display: inline-block;  
+    width: 50%;  
+    color: #777777;  
+}  
+.on{ color: #ffb83d;  
+    border-bottom: 5rpx solid #ffb83d;}  
+  
+.swiper-box{ display: block; height: 100%; width: 100%; overflow: hidden; background: #fff;}  
+.swiper-box view{  
+    /* text-align: center;   */
+}  
+.swiper-box image{
+display: block;
+width: 236rpx;
+height: 188rpx;
+margin: 136rpx auto 0;
 }

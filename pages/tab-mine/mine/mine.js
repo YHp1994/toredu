@@ -5,7 +5,9 @@ Page({
   data: {
     motto: 'Hello ! WelCome to WxApp',
     islogin: false,
-    userInfo: {}
+    userInfo: {},
+    // tab切换  
+    currentTab: 0,
   },
   //事件处理函数
   bindViewTap: function () {
@@ -17,11 +19,9 @@ Page({
     console.log('onLoad')
     var that = this;
     var CuserInfo = wx.getStorageSync('CuserInfo');
-    if (CuserInfo.accesstoken) {
+    if (CuserInfo.memberID) {
       that.setData({ islogin: true });
     }
-    console.log(CuserInfo)
-
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function (userInfo) {
       //更新数据
@@ -29,5 +29,29 @@ Page({
         userInfo: userInfo
       })
     })
-  }
+  },
+  /** 
+   * 滑动切换tab 
+   */
+  bindChange: function (e) {
+
+    var that = this;
+    that.setData({ currentTab: e.detail.current });
+
+  },
+  /** 
+   * 点击tab切换 
+   */
+  swichNav: function (e) {
+
+    var that = this;
+
+    if (this.data.currentTab === e.target.dataset.current) {
+      return false;
+    } else {
+      that.setData({
+        currentTab: e.target.dataset.current
+      })
+    }
+  } 
 })
