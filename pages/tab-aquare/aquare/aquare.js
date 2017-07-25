@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    postsList: [],
+    postsList1: [],
     hidden: false,
     page: 1,
     limit: 8,
@@ -53,19 +53,8 @@ Page({
     that.setData({ hidden: false });
 
     if (page == 1) {
-      that.setData({ postsList: [] });
       that.setData({ postsList1: [] });
     }
-
-    Api.fetchGet(ApiUrl, (err, res) => {
-      //更新数据
-      console.log(res)
-      that.setData({
-        postsList: that.data.postsList.concat(res.data.map(function (item) {
-          return item;
-        }))
-      });
-    });
       Api.fetchGet(ApiUrl1, (err, res) => {
         //更新数据
         console.log(res)

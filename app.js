@@ -2,7 +2,8 @@
 // const request = require('./utils/request.js')
 App({
   data: {
-    imgsList: []
+    imgsList: [],
+    isLogin: false
   },
   // request:request,
   onLaunch: function () {

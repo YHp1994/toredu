@@ -3,11 +3,9 @@
 var app = getApp()
 Page({
   data: {
-    motto: 'Hello ! WelCome to WxApp',
     islogin: false,
     userInfo: {},
-    // tab切换  
-    currentTab: 0,
+    currentTab: 0
   },
   //事件处理函数
   bindViewTap: function () {
@@ -53,5 +51,8 @@ Page({
         currentTab: e.target.dataset.current
       })
     }
-  } 
+  } ,
+  onShow:function(){
+    this.onLoad()
+  }
 })

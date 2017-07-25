@@ -98,8 +98,6 @@ Page({
    */
   sucessLogin: (res, selfObj) =>{
     console.log('sucessLogin', res);
-    // console.log('selfObj', selfObj);
-
 
     if (res.returnCode === '402'){
       
@@ -134,6 +132,12 @@ Page({
             selfObj.setLoginData2(selfObj);
             wx.switchTab({
               url: '/pages/tab-mine/mine/mine',
+              success: function (e) {
+                var page = getCurrentPages().pop();
+                console.log(page)
+                if (page == undefined || page == null) return;
+                page.onShow();
+              }
             })
           }, 2000);
     }
