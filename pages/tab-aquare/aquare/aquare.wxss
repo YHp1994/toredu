@@ -133,3 +133,10 @@ page{
 .loading-font{
   font-size: 30rpx;
 }
+
+.no-more{
+  text-align: center;
+  height: 80rpx;
+  color: #b2b2b2;
+  line-height: 80rpx;
+}

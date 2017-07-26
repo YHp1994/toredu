@@ -104,7 +104,7 @@ Page({
         })
       }, 2000)
     }else{
-      wx.navigateTo({
+      wx.redirectTo({
         url: '/pages/tab-aquare/detail/detail?id=' + selfObj.data.id,
       })
     }

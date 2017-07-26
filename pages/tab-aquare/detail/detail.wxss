@@ -158,6 +158,11 @@
   margin-left: 10rpx;
   color: #b2b2b2;
 }
+.detail-post-zan-num-cur{
+  display: inline-block;
+  margin-left: 10rpx;
+  color: #ffb83d;
+}
 
 .detail-post-comment-time{
   font-size: 26rpx;

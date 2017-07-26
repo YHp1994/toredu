@@ -9,6 +9,7 @@
   </view>
 </view> -->
 
+<import src="../../common/ask-list.wxml"/>
 <view class="page me">
 
   <view class="userinfo" wx:if="{{islogin == false}}">
@@ -38,11 +39,14 @@
     <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">我的回答</view>
   </view>
 
-  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
+  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height: {{clientHeight+'rpx'}}" bindchange="bindChange">
     <!-- 我是哈哈 -->
     <swiper-item>
       <view class="my_empty">
-        <image src="/images/icon/my_empty.png"></image>
+        <!-- <image src="/images/icon/my_empty.png"></image> -->
+        <view class="topics">
+          <template is="aquare-list" data="{{ postsList1, hidden }}"/>
+        </view>
       </view>
     </swiper-item>
     <!-- 我是呵呵 -->

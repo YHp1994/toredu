@@ -161,6 +161,12 @@ Page({
         selfObj.setregistData2(selfObj);
         wx.switchTab({
           url: '/pages/tab-mine/mine/mine',
+          success: function (e) {
+            var page = getCurrentPages().pop();
+            console.log(page)
+            if (page == undefined || page == null) return;
+            page.onShow();
+          }
         })
       }, 2000);
     }

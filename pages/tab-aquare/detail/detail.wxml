@@ -34,7 +34,7 @@
   <view class="detail-post-comment">
     <view class="detail-post-comment-title">全部回答（{{detail.questionAnswerList.answerTimes}}）</view>
     <view class="detail-post-comment-list">
-      <block wx:for="{{ detail.questionAnswerList.answerList }}" wx:if="{{detail.questionAnswerList.answerTimes > 0}}">
+       <block wx:for="{{ answerLists }}" wx:if="{{detail.questionAnswerList.answerTimes > 0}}">
         <view class="detail-post-comment-item" index="{{index}}" id="{{item.answerID}}">
           <view class="detail-post-comment-top">
             <view class="detail-post-comment-avatar">
@@ -53,14 +53,17 @@
 
             <view class="detail-post-comment-time">{{ item.answerTime }}</view>
 
-            <view class="detail-post-comment-info-cell" style="text-align:right" id="{{item.id}}" data-index="{{index}}" catchtap="reply">
-              <image class="detail-post-zan" mode="scaleToFill" src="/images/icon/zan.png"></image>
-              <text class="detail-post-zan-num" wx:if="{{item.zanNum > 0}}">{{item.zanNum}}</text>
+            <view class="detail-post-comment-info-cell" wx:if="{{isZan == false}}" style="text-align:right" id="{{item.answerID}}" data-index="{{index}}" catchtap="reply">
+              <image class="detail-post-zan" mode="scaleToFill" src="/images/icon/question_icon_praise_nor.png"></image>
+              <text class="detail-post-zan-num" wx:if="{{item.upTimes > 0}}">({{item.upTimes}})</text>
+            </view>
+            <view class="detail-post-comment-info-cell"  wx:if="{{isZan == true}}" style="text-align:right" id="{{item.answerID}}" data-index="{{index}}" catchtap="reply">
+              <image class="detail-post-zan" mode="scaleToFill" src="/images/icon/question_icon_praise_sel.png"></image>
+              <text class="detail-post-zan-num-cur" wx:if="{{item.upTimes > 0}}">({{item.upTimes}})</text>
             </view>
           </view>
         </view>
-      </block>
-
+      </block> 
       <block wx:if="{{detail.questionAnswerList.answerTimes == 0}}">
         <view class="detail-post-comment-null">
           <image class="imgnull" mode="scaleToFill" src="/images/icon/question_empty.png"></image>

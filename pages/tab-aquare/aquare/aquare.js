@@ -8,11 +8,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    postsList1: [],
+    postsList1: {},
     hidden: false,
     page: 1,
     limit: 8,
-    tab: 'dev'
+    noMore:true
   },
   seachProblem: function () {
     console.log("打开新页面");
@@ -33,6 +33,7 @@ Page({
   onPullDownRefresh: function () {
     this.getData();
     console.log('下拉加载更多', new Date());
+    wx.stopPullDownRefresh()
   },
   /**
    * 页面上拉触底事件的处理函数
@@ -44,10 +45,8 @@ Page({
   //获取文章列表数据
   getData: function () {
     var that = this;
-    var tab = that.data.tab;
     var page = that.data.page;
     var limit = that.data.limit;
-    var ApiUrl = Api.topics + '?tab=' + tab + '&page=' + page + '&limit=' + limit;
     var ApiUrl1 = Api.t_questionList + '?pageNo=' + page + '&ini=' + limit;
     console.log(ApiUrl1)
     that.setData({ hidden: false });
@@ -58,7 +57,7 @@ Page({
       Api.fetchGet(ApiUrl1, (err, res) => {
         //更新数据
         console.log(res)
-        if(res){
+        if (res.data.faqList.length !== 0){
           that.setData({
             postsList1: that.data.postsList1.concat(res.data.faqList.map(function (item) {
               // item.last_reply_at = util.getDateDiff(new Date(item.last_reply_at));
@@ -66,12 +65,15 @@ Page({
             }))
           });
         }else{
-          wx.showToast({
-            title: '到底了',
+          // wx.showToast({
+          //   title: '到底了',
+          // })
+          // setTimeout(function(){
+          //   wx.hideToast()
+          // },1000)
+          this.setData({
+            noMore:false
           })
-          setTimeout(function(){
-            wx.hideToast()
-          },1000)
           
         }
       setTimeout(function () {

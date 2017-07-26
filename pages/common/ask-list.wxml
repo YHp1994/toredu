@@ -5,18 +5,8 @@
     <block wx:for="{{postsList1}}"  wx:key="">
       <view class="posts-list">
         <navigator url="/pages/tab-aquare/detail/detail?id={{item.questionID}}">
-          <view class="posts-list-info" index="{{index}}">
-              <image class="userimg" src="{{item.face}}" />
-              <view class="item-box">
-                <view class="userinfo">
-                  <text class="username">{{item.memberName}}</text>
-                </view>
-                
-              </view>
-          </view>
           <view class="posts-title">
-                  <view class="posts-tag hot" wx:if="{{item.top === true}}">置顶</view>
-                  <text>{{item.question}}</text>
+              <text>{{item.question}}</text>
          </view>
           <view class="bar-info">
             <view class="bar-info-item">

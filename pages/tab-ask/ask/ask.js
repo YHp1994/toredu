@@ -123,7 +123,7 @@ Page({
     },
     sucessAsk: function (res, selfObj){
       console.log(res.questionID);
-      wx.redirectTo({
+      wx.navigateTo({
         url: '/pages/tab-aquare/detail/detail?id=' + res.questionID,
       })
     },
