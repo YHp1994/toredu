@@ -40,12 +40,12 @@ Page({
   /** 
    * 滑动切换tab 
    */
-  bindChange: function (e) {
+  // bindChange: function (e) {
 
-    var that = this;
-    that.setData({ currentTab: e.detail.current });
+  //   var that = this;
+  //   that.setData({ currentTab: e.detail.current });
 
-  },
+  // },
   /** 
    * 点击tab切换 
    */
@@ -76,7 +76,8 @@ Page({
     var that = this;
     var page = that.data.page;
     var limit = that.data.limit;
-    var ApiUrl1 = Api.t_questionList + '?pageNo=' + page + '&ini=' + limit;
+    var CuserInfo = wx.getStorageSync('CuserInfo');    
+    var ApiUrl1 = Api.t_myQuestion + '?memberID=' + CuserInfo.memberID + '&pageNo=' + 1 + '&ini=' + 8;
     console.log(ApiUrl1)
     that.setData({ hidden: false });
 
@@ -85,29 +86,29 @@ Page({
     }
     Api.fetchGet(ApiUrl1, (err, res) => {
       //更新数据
-      console.log(res)
-      if (res.data.faqList.length !== 0) {
-        that.setData({
-          postsList1: that.data.postsList1.concat(res.data.faqList.map(function (item) {
-            // item.last_reply_at = util.getDateDiff(new Date(item.last_reply_at));
-            return item;
-          }))
-        });
-      } else {
-        // wx.showToast({
-        //   title: '到底了',
-        // })
-        // setTimeout(function(){
-        //   wx.hideToast()
-        // },1000)
-        this.setData({
-          noMore: false
-        })
+      // console.log(res)
+      // if (res.data.faqList.length !== 0) {
+      //   that.setData({
+      //     postsList1: that.data.postsList1.concat(res.data.faqList.map(function (item) {
+      //       // item.last_reply_at = util.getDateDiff(new Date(item.last_reply_at));
+      //       return item;
+      //     }))
+      //   });
+      // } else {
+      //   // wx.showToast({
+      //   //   title: '到底了',
+      //   // })
+      //   // setTimeout(function(){
+      //   //   wx.hideToast()
+      //   // },1000)
+      //   this.setData({
+      //     noMore: false
+      //   })
 
-      }
-      setTimeout(function () {
-        that.setData({ hidden: true });
-      }, 300);
+      // }
+      // setTimeout(function () {
+      //   that.setData({ hidden: true });
+      // }, 300);
     })
   },
 

@@ -39,6 +39,9 @@ var t_myAnswerQuestion = THOST + 'faq/myAnswerQuestion';
 var t_answer = THOST + 'faq/answer';
 //回答点赞 post /faq/updateThumbsUp
 var t_updateThumbsUp = THOST + 'faq/updateThumbsUp';
+//  我的提问 /faq/myQuestion
+var t_myQuestion = THOST + 'faq/myQuestion'
+
 
 
 
@@ -206,6 +209,8 @@ module.exports = {
  t_answer: t_answer,
  //回答点赞
  t_updateThumbsUp:t_updateThumbsUp,
+//  我的提问
+t_myQuestion: t_myQuestion,
 
  requestPostApi: requestPostApi,
  requestGetApi: requestGetApi

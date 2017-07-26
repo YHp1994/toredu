@@ -39,23 +39,33 @@
     <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">我的回答</view>
   </view>
 
-  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height: {{clientHeight+'rpx'}}" bindchange="bindChange">
+  <!-- <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height: {{clientHeight+'rpx'}}" bindchange="bindChange"> -->
     <!-- 我是哈哈 -->
-    <swiper-item>
-      <view class="my_empty">
+    <!-- <swiper-item> -->
+    <view class="tab-content {{currentTab==0 ? 'cur' : ''}}">
+    
+      <!-- <view class="my_empty"  class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" > -->
         <!-- <image src="/images/icon/my_empty.png"></image> -->
-        <view class="topics">
+        
+      <!-- </view> -->
+      <view class="topics">
           <template is="aquare-list" data="{{ postsList1, hidden }}"/>
+
+  <view class="no-more" hidden="{{noMore}}"><text>没有更多了</text></view>
         </view>
       </view>
-    </swiper-item>
+      
+    <!-- </swiper-item> -->
     <!-- 我是呵呵 -->
-    <swiper-item>
-      <view class="my_empty">
+    <!-- <swiper-item> -->
+    <view class="tab-content {{currentTab==1 ? 'cur' : ''}}">
+    <view class="my_empty" >
         <image src="/images/icon/question_empty.png"></image>
       </view>
-    </swiper-item>
-  </swiper>
+    </view>
+      
+    <!-- </swiper-item> -->
+  <!-- </swiper> -->
 
   <!-- <view class="view-cell view-cell-line"  wx:if="{{islogin == true}}"> -->
   <!-- <view class="view-cell-primary">

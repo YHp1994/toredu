@@ -4,7 +4,6 @@ page{
 }
 .me{
   height: 100%;
-  background: #f1f1f1;
 }
 .userinfo{
   position: relative;
@@ -14,7 +13,7 @@ page{
   color: #fff;
   display: flex;
   align-items: center;
-  margin-bottom: 30rpx;
+  border-bottom: 30rpx solid #f1f1f1;
 }
 .userinfo-avatar {
   width: 120rpx;
@@ -62,15 +61,21 @@ page{
 .on{ color: #ffb83d;  
     border-bottom: 5rpx solid #ffb83d;}  
   
-.swiper-box{ display: block; height: 100%; width: 100%; overflow: hidden; background: #fff;}  
+.my_empty{ display: block; height: 100%; width: 100%; overflow: hidden; background: #fff;}  
 .swiper-box view{  
     /* text-align: center;   */
 }  
-.swiper-box image{
+.my_empty image{
 display: block;
 width: 236rpx;
 height: 188rpx;
 margin: 136rpx auto 0;
+}
+.tab-content{
+  display: none;
+}
+.tab-content.cur{
+  display: block;
 }
 /*列表 list*/
 .topics{
@@ -94,6 +99,7 @@ margin: 136rpx auto 0;
   -webkit-box-orient: vertical;
   -webkit-line-clamp:2; 
   padding: 30rpx 0;
+  color: #000000;
 }
 .posts-list-info{
   overflow: hidden;
@@ -179,4 +185,10 @@ margin: 136rpx auto 0;
 /*loading*/
 .loading-font{
   font-size: 30rpx;
+}
+.no-more{
+  text-align: center;
+  height: 80rpx;
+  color: #b2b2b2;
+  line-height: 80rpx;
 }
