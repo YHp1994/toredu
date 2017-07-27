@@ -4,7 +4,6 @@ var util = require('../../../utils/util.js');
 var index = ''
 Page({
   data: {
-    title: '话题详情',
     detail: {},
     answerLists:[],
     fileUrl:[],
@@ -20,10 +19,17 @@ Page({
   onLoad: function (options) {
     // this.fetchData(options.id);
     this.setData({ topic_id: options.id });
-    this.getData();
+    // this.getData();
   },
   onShow:function(){
-
+    this.setData({
+      detail: {},
+      answerLists: [],
+      fileUrl: [],
+      page: 1,
+      limit: 8,
+      isZan: false
+    })
     this.getData();
   },
   //获取回答列表数据

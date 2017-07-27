@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/tab-aquare/search/search",
     "pages/tab-aquare/aquare/aquare",
+    "pages/tab-aquare/search/search",
     "pages/tab-mine/mine/mine",
     "pages/tab-ask/ask/ask",
     "pages/tab-mine/sign/sign",
