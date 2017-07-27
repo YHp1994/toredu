@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/tab-mine/mine/mine",
+    "pages/tab-aquare/search/search",
     "pages/tab-aquare/aquare/aquare",
     "pages/tab-mine/mine/mine",
     "pages/tab-ask/ask/ask",
@@ -9,7 +9,6 @@
     "pages/logs/logs",
     "pages/tab-aquare/detail/detail",
     "pages/tab-aquare/answer/answer",
-    "pages/tab-aquare/search/search",
     "pages/tab-aquare/searchlist/searchlist",
     "pages/tab-mine/login2/login2"
   ],

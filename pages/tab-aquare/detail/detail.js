@@ -7,6 +7,7 @@ Page({
     title: '话题详情',
     detail: {},
     answerLists:[],
+    fileUrl:[],
     page: 1,
     limit: 8,
     hidden: false,
@@ -21,7 +22,10 @@ Page({
     this.setData({ topic_id: options.id });
     this.getData();
   },
+  onShow:function(){
 
+    this.getData();
+  },
   //获取回答列表数据
   getData: function () {
     var that = this;
@@ -45,13 +49,19 @@ Page({
           })),
           detail: res.data,
           })
-          console.log(that.data.answerLists)
-      }     
-      else {
+        console.log(that.data.fileUrl)
+      } else {
         this.setData({
           noMore: false
         })
 
+      } 
+      if (res.data.questionAnswerList.questionExtList){
+        that.setData({
+          fileUrl: that.data.fileUrl.concat(res.data.questionAnswerList.questionExtList.map(function (item) {
+            return "https://app.toredu.com/" + item.fileUrl;
+          }))
+        })
       }
       console.log(this.data.detail)
       setTimeout(function () {
@@ -79,24 +89,25 @@ Page({
     this.getData({ page: that.data.page });
     // }
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  clickImage: function (e) {
+    var current = e.target.dataset.src;
+    console.log(current);
+    console.log(this.data.fileUrl);
+    var fileUrls = this.data.fileUrl;
+    wx.previewImage({
+      current: current,
+      urls: fileUrls,
+      success:function(){
+        console.log('展示图片了')
+      },
+      fail: function () {
+        console.log('fail')
+      },
+      complete: function () {
+        console.info("点击图片了");
+      },
+    })
+  },
 
 
 
@@ -104,6 +115,10 @@ Page({
 
   // 点赞
   reply: function (e) {
+    if (!wx.getStorageSync('CuserInfo')) {
+      this.setData({ modalHidden: false });
+      return;
+    }
     var CuserInfo = wx.getStorageSync('CuserInfo');
     var memberID = CuserInfo.memberID;
     var answerID = e.currentTarget.id;
@@ -132,15 +147,41 @@ Page({
     } else if (res.returnCode == "000"){
       // 点赞成功
       console.log("点赞成功")
-      console.log(this.data.detail.questionAnswerList.answerList)
-      this.data.detail.questionAnswerList.answerList[index].upTimes++;
-      console.log(this.data.detail.questionAnswerList.answerList[index].upTimes)
+
+
+      // if (res.success) {
+      //   var detail = that.data.detail;
+      //   var replies = detail.replies[index];
+
+      //   if (res.action === "up") {
+      //     replies.zanNum = replies.zanNum + 1;
+      //   } else {
+      //     replies.zanNum = replies.zanNum - 1;
+      //   }
+
+      //   that.setData({ detail: detail });
+
+      // }
+
+      var answerLists = selfObj.data.answerLists;
+      var rnum = answerLists[index];
+      rnum.upTimes = rnum.upTimes+1;
       selfObj.setData({
-        detail: selfObj.data.detail,
-        isZan:true
+        answerLists: answerLists
       })
 
     }
+  },
+  // 关闭--模态弹窗
+  cancelChange: function () {
+    this.setData({ modalHidden: true });
+  },
+  // 确认--模态弹窗
+  confirmChange: function () {
+    this.setData({ modalHidden: true });
+    wx.navigateTo({
+      url: '/pages/tab-mine/login/login'
+    });
   },
   failThumbsUp:function(){
 

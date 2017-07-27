@@ -17,8 +17,8 @@
   </view>
   <view class="img-group">
     <block wx:for="{{ detail.questionAnswerList.questionExtList }}" wx:if="{{detail.questionAnswerList.questionExtList.length > 0}}">
-      <view class="imgwrap" index="{{index}}">
-        <image src="https://app.toredu.com/{{detail.questionAnswerList.questionExtList[index].fileSimpleUrl}}" mode='aspectFill'></image>
+      <view class="imgwrap" index="{{index}}" >
+        <image bindtap="clickImage" data-src="https://app.toredu.com/{{detail.questionAnswerList.questionExtList[index].fileUrl}}" src="https://app.toredu.com/{{detail.questionAnswerList.questionExtList[index].fileSimpleUrl}}" mode='aspectFill'></image>
       </view>
     </block>
   </view>
@@ -34,7 +34,7 @@
   <view class="detail-post-comment">
     <view class="detail-post-comment-title">全部回答（{{detail.questionAnswerList.answerTimes}}）</view>
     <view class="detail-post-comment-list">
-       <block wx:for="{{ answerLists }}" wx:if="{{detail.questionAnswerList.answerTimes > 0}}">
+       <block wx:for="{{ answerLists}}" wx:if="{{detail.questionAnswerList.answerTimes > 0}}">
         <view class="detail-post-comment-item" index="{{index}}" id="{{item.answerID}}">
           <view class="detail-post-comment-top">
             <view class="detail-post-comment-avatar">
@@ -53,13 +53,13 @@
 
             <view class="detail-post-comment-time">{{ item.answerTime }}</view>
 
-            <view class="detail-post-comment-info-cell" wx:if="{{isZan == false}}" style="text-align:right" id="{{item.answerID}}" data-index="{{index}}" catchtap="reply">
+            <view class="detail-post-comment-info-cell" wx:if="{{isZan == false}}" style="text-align:right" id="{{item.answerID}}" data-index="{{index}}" catchtap="reply" data-index="{{index}}">
               <image class="detail-post-zan" mode="scaleToFill" src="/images/icon/question_icon_praise_nor.png"></image>
-              <text class="detail-post-zan-num" wx:if="{{item.upTimes > 0}}">({{item.upTimes}})</text>
+              <text class="detail-post-zan-num">({{item.upTimes}})</text>
             </view>
             <view class="detail-post-comment-info-cell"  wx:if="{{isZan == true}}" style="text-align:right" id="{{item.answerID}}" data-index="{{index}}" catchtap="reply">
               <image class="detail-post-zan" mode="scaleToFill" src="/images/icon/question_icon_praise_sel.png"></image>
-              <text class="detail-post-zan-num-cur" wx:if="{{item.upTimes > 0}}">({{item.upTimes}})</text>
+              <text class="detail-post-zan-num-cur">({{item.upTimes}})</text>
             </view>
           </view>
         </view>
@@ -80,8 +80,8 @@
 
 
 
-  <modal title="消息" confirm-text="确认" cancel-text="关闭" hidden="{{modalHidden}}" bindconfirm="confirmChange" bindcancel="cancelChange">
-    您还没未登录conde，是否前往认证登录？
+ <modal title="消息" confirm-text="确认" cancel-text="关闭" hidden="{{modalHidden}}" bindconfirm="confirmChange" bindcancel="cancelChange">
+    您未登录土龟网，是否前往登录？
   </modal>
 
 

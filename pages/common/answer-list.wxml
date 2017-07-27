@@ -1,8 +1,8 @@
 <!--列表list组件 -->
-<template name="ask-list">
+<template name="answer-list">
 <view class="scroll-posts-list"  scroll-y="true" style="height:100%" >
   <view class="postslist">
-    <block wx:for="{{postsList1}}"  wx:key="">
+    <block wx:for="{{postsList2}}"  wx:key="">
       <view class="posts-list">
         <navigator url="/pages/tab-aquare/detail/detail?id={{item.questionID}}">
           <view class="posts-title">

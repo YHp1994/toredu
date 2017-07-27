@@ -27,6 +27,10 @@ Page({
   onLoad: function (options) {
     this.getData();
   },
+  // onShow: function(){
+
+  //   this.getData();
+  // },
   /**
   * 页面相关事件处理函数--监听用户下拉动作
   */
@@ -56,7 +60,6 @@ Page({
     }
       Api.fetchGet(ApiUrl1, (err, res) => {
         //更新数据
-        console.log(res)
         if (res.data.faqList.length !== 0){
           that.setData({
             postsList1: that.data.postsList1.concat(res.data.faqList.map(function (item) {

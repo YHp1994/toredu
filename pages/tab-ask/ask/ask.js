@@ -122,10 +122,25 @@ Page({
    
     },
     sucessAsk: function (res, selfObj){
-      console.log(res.questionID);
-      wx.navigateTo({
-        url: '/pages/tab-aquare/detail/detail?id=' + res.questionID,
-      })
+      console.log(res);
+      if (res.returnCode == "404"){
+        wx.showToast({
+          title: '今日提问已达上限',
+          icon: 'success',
+          duration: 2000
+        })
+
+        setTimeout(function(){
+          wx.switchTab({
+            url: '/pages/tab-aquare/aquare/aquare',
+          })
+        },3000)
+      }else{
+        wx.navigateTo({
+          url: '/pages/tab-aquare/detail/detail?id=' + res.questionID,
+        })
+      }
+      
     },
   /**
    * 删除图片

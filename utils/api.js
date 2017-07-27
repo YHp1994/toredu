@@ -33,14 +33,16 @@ var t_questionList = THOST + '/faq/questionList';
 // https://app.toredu.com/small/application/faq/questionDetail
 // 问题详情 get /faq/questionDetail
 var t_questionDetail = THOST + 'faq/questionDetail';
-//我要回答 post /faq/myAnswerQuestion
-var t_myAnswerQuestion = THOST + 'faq/myAnswerQuestion';
 //回答问题 post /faq/answer
 var t_answer = THOST + 'faq/answer';
 //回答点赞 post /faq/updateThumbsUp
 var t_updateThumbsUp = THOST + 'faq/updateThumbsUp';
 //  我的提问 /faq/myQuestion
-var t_myQuestion = THOST + 'faq/myQuestion'
+var t_myQuestion = THOST + 'faq/myQuestion';
+// 我的回答 /faq/myAnswerQuestion
+var t_myAnswerQuestion = THOST +'faq/myAnswerQuestion';
+// 搜索 /faq/myAnswerQuestion
+var t_search = THOST + 'faq/search';
 
 
 
@@ -160,20 +162,6 @@ function requestApi(url, params, method, sourceObj, successFun, failFun, complet
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 module.exports = {
   // API
   topics: topics,
@@ -203,14 +191,16 @@ module.exports = {
  t_questionList: t_questionList,
  // 问题详情 get /faq/questionDetail
  t_questionDetail: t_questionDetail,
-//我要回答
- t_myAnswerQuestion:t_myAnswerQuestion,
  //回答问题
  t_answer: t_answer,
  //回答点赞
  t_updateThumbsUp:t_updateThumbsUp,
 //  我的提问
-t_myQuestion: t_myQuestion,
+ t_myQuestion: t_myQuestion,
+ //我的回答
+ t_myAnswerQuestion: t_myAnswerQuestion,
+ //搜索
+ t_search: t_search,
 
  requestPostApi: requestPostApi,
  requestGetApi: requestGetApi

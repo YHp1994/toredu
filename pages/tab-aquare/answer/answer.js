@@ -39,6 +39,10 @@ Page({
     selfObj.setData({ detail: res.data });
   },
   bindFormSubmit: function (e) {
+    if (!wx.getStorageSync('CuserInfo')) {
+      this.setData({ modalHidden: false });
+      return;
+    }
     var answer = e.detail.value.textarea;
     var that = this;
     var id = this.data.id;
@@ -104,7 +108,7 @@ Page({
         })
       }, 2000)
     }else{
-      wx.redirectTo({
+      wx.navigateBack({
         url: '/pages/tab-aquare/detail/detail?id=' + selfObj.data.id,
       })
     }
@@ -112,6 +116,17 @@ Page({
   },
   failAnswer:function(){
     console.log(fail);
+  },
+  // 关闭--模态弹窗
+  cancelChange: function () {
+    this.setData({ modalHidden: true });
+  },
+  // 确认--模态弹窗
+  confirmChange: function () {
+    this.setData({ modalHidden: true });
+    wx.navigateTo({
+      url: '/pages/tab-mine/login/login'
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

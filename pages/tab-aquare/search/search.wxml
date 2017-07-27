@@ -2,11 +2,12 @@
     <view class="search-bar">
         <view class="search-bar-warper">
             <icon type="search" size="20"/>
-            <input bindchange="search" placeholder="歌曲/歌手/专辑"/>
+            <input bindchange="search" placeholder="你输入你的问题" class="search-input"/>
+            <text class="search-btn">搜索</text>
         </view>
     </view>
     <view class="result">
-        <view class="result-group"  wx:if="{{searchRes.song!=null}}" >
+        <!-- <view class="result-group"  wx:if="{{searchRes.song!=null}}" >
             <view class="group">
                 <image class="group-image"  src="../../image/icon-music.png"></image>
                 <text class="group-text" >单曲</text>
@@ -54,6 +55,9 @@
                 <text class="mv-name">{{item.name}}</text>
                 <text class="mv-author">{{item.singer}}</text>
             </view>
+        </view> -->
+        <view class="empty-search">
+            <image src="/images/icon/search_empty.png"></image>
         </view>
     </view>
 </view>

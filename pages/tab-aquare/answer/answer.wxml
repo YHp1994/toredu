@@ -12,7 +12,7 @@
     <button form-type="submit"> 提交 </button>
   </form>
 </view>
-  <!--<modal title="消息" confirm-text="确认" cancel-text="关闭" hidden="{{modalHidden}}" bindconfirm="confirmChange" bindcancel="cancelChange">
-    您还没未登录conde，是否前往认证登录？
-  </modal>-->
+  <modal title="消息" confirm-text="确认" cancel-text="关闭" hidden="{{modalHidden}}" bindconfirm="confirmChange" bindcancel="cancelChange">
+    您未登录土龟网，是否前往登录？
+  </modal>
 </view>

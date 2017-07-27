@@ -114,7 +114,7 @@ Page({
         content: '密码错误'
       });
       selfObj.setLoginData2(selfObj);
-    }else{
+    } else if (res.returnCode === '000'){
       var CuserInfo = {
           memberID: res.data[0].userInfo.memberID,
           memberName: res.data[0].userInfo.memberName,
