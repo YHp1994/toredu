@@ -191,4 +191,5 @@ margin: 136rpx auto 0;
   height: 80rpx;
   color: #b2b2b2;
   line-height: 80rpx;
+  background: #fff;
 }

@@ -23,7 +23,6 @@ Page({
     })
   },
   onLoad: function () {
-    
     console.log('onLoad')
     var that = this;
     var CuserInfo = wx.getStorageSync('CuserInfo');
@@ -57,6 +56,9 @@ Page({
       this.setData({ islogin: true, userInfo: CuserInfo });
     }
   },
+  onPullDownRefresh: function () {
+    wx.stopPullDownRefresh()
+  },
   /**
    * 页面上拉触底事件的处理函数
    */
@@ -88,11 +90,18 @@ Page({
 
       if (res.returnCode == '000') {
       if (res.data.myQuestionList) {
+        console.log("请求回来的数据");
+        if(page == 1){
+          that.setData({postsList1:[]})
+        }
+        console.log(res.data.myQuestionList);
         that.setData({
           postsList1: that.data.postsList1.concat(res.data.myQuestionList.map(function (item) {
             return item;
           }))
         });
+        console.log("处理后的的数据");
+        console.log(that.data.postsList1);
       } else {
         setTimeout(function(){
           wx.hideToast()
@@ -114,7 +123,6 @@ Page({
     var CuserInfo = wx.getStorageSync('CuserInfo');
     var ApiUrl1 = Api.t_myAnswerQuestion + '?memberID=' + CuserInfo.memberID + '&pageNo=' + page2;
     that.setData({ hidden: false });
-    console.log(ApiUrl1)
     if (page2 == 1) {
       that.setData({ postsList2: [] });
     }
@@ -122,11 +130,18 @@ Page({
       //更新数据
      if(res.returnCode == '000'){
        if (res.data.myQuestionList) {
+         console.log("请求回来的数据2");
+         console.log(res.data.myQuestionList);
+         if (page2 == 1) {
+           that.setData({ postsList2: [] });
+         }
          that.setData({
            postsList2: that.data.postsList2.concat(res.data.myQuestionList.map(function (item) {
              return item;
            }))
          });
+         console.log("处理后的的数据2");
+         console.log(that.data.postsList1);
        } else {
          setTimeout(function () {
            wx.hideToast()
@@ -134,7 +149,6 @@ Page({
          this.setData({
            noMore2: false
          })
-
        }
       }
       

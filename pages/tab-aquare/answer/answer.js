@@ -28,7 +28,7 @@ Page({
     this.setData({
       typeNum: e.detail.value.length
     })
-    if (e.detail.value.length > 10) {
+    if (e.detail.value.length > 4) {
       this.setData({
         submitForm: false
       })

@@ -9,7 +9,7 @@
      <view class="input-count">
       <text>{{typeNum}}</text><text class="cur">/200</text>
     </view>
-    <button form-type="submit"> 提交 </button>
+    <button form-type="submit" disabled="{{submitForm}}"> 提交 </button>
   </form>
 </view>
   <modal title="消息" confirm-text="确认" cancel-text="关闭" hidden="{{modalHidden}}" bindconfirm="confirmChange" bindcancel="cancelChange">

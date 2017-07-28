@@ -37,8 +37,6 @@
 }
 
 
-
-
 .empty-search{
   background: #ffffff;
 }
@@ -54,129 +52,27 @@
 
 
 .result{
-    margin-top:100rpx;
-    background: #eeeeee;
-    display: flex;
-    flex-direction: column;
-}
-
-.result-group{
+    margin-top:190rpx;
     background: #ffffff;
-}
-
-.group{
-    display: flex;
-    flex-direction: row;
-    height:80rpx;
-    align-items: flex-end;
-    padding-bottom: 10rpx;
-    padding-left: 20rpx;
-    background: #eeeeee;
-}
-
-.group-image{
-    width:50rpx;
-    height:50rpx;
-}
-
-.group-text{
-    margin-left:10rpx;
-}
-
-.result-item{
-    display: flex;
-    background:#ffffff;
-    border-bottom: 1rpx #eeeeee solid;
-    flex-direction: row;
-    margin-left: 20rpx;
-    padding-left: 10rpx;
-    height:80rpx;
-    align-items: center;
-}
-
-.result-author{
-    color:#929292;
-}
-
-.album-item{
-    height:80rpx;
-    
-    display: flex;
-    flex: row;
-    border-bottom: #eeeeee 1rpx solid;
-    padding:20rpx 20rpx;
-    align-items: center;
-}
-
-.album-image{
-    height:80rpx;
-    width:80rpx;
-    border-radius: 10rpx;
-}
-
-.album-info{
     display: flex;
     flex-direction: column;
-    padding-left: 15rpx;
+    padding: 0 40rpx;
+    font-size: 34rpx;
+    line-height: 52rpx;
+    color: #888;
 }
-
-.album-name{
-    font-size: 14px;
-    line-height: 20px;
+.result view{
+   display: -webkit-box ;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:1; 
+  margin-bottom: 35rpx;
 }
-
-.album-author{
-    font-size: 12px;
-    color:#929292;
-    line-height: 20px;
+.no-about{
+  margin: 268rpx auto 0;
+  text-align: center;
+  color: #acacac;
+  font-size: 36rpx;
 }
-
-.songs-action-button{
-    height:40rpx;
-    width:40rpx;
-    margin-right: 10rpx;
-}
-
-.singer-item{
-    height:80rpx;
-    display: flex;
-    flex: row;
-    padding:10rpx 20rpx;
-    align-items: center;
-}
-
-.singer-image{
-    height:80rpx;
-    width:80rpx;
-    border-radius: 50%;
-}
-
-.singer-text{
-    display: flex;
-    border-bottom: 1rpx #eeeeee solid;
-    height:80rpx;
-    align-items: center;
-    padding:6rpx 20rpx;
-    flex-grow: 1;
-}
-
-
-.mv-item{
-    display: flex;
-    flex-direction: column;
-    border-bottom: #eeeeee 1rpx solid;
-    padding:20rpx 20rpx;
-}
-
-.mv-name{
-    font-size: 14px;
-    line-height: 20px;
-}
-
-.mv-author{
-    font-size: 12px;
-    color:#929292;
-    line-height: 20px;
-}
-
-

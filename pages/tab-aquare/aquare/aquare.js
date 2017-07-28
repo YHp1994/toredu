@@ -35,6 +35,8 @@ Page({
   * 页面相关事件处理函数--监听用户下拉动作
   */
   onPullDownRefresh: function () {
+
+    this.setData({ page: 1 });
     this.getData();
     console.log('下拉加载更多', new Date());
     wx.stopPullDownRefresh()
@@ -59,26 +61,34 @@ Page({
       that.setData({ postsList1: [] });
     }
       Api.fetchGet(ApiUrl1, (err, res) => {
-        //更新数据
-        if (res.data.faqList.length !== 0){
-          that.setData({
-            postsList1: that.data.postsList1.concat(res.data.faqList.map(function (item) {
-              // item.last_reply_at = util.getDateDiff(new Date(item.last_reply_at));
-              return item;
-            }))
-          });
+        if(res){
+          //更新数据
+          if (res.data.faqList.length !== 0) {
+            that.setData({
+              postsList1: that.data.postsList1.concat(res.data.faqList.map(function (item) {
+                // item.last_reply_at = util.getDateDiff(new Date(item.last_reply_at));
+                return item;
+              }))
+            });
+          } else {
+            // wx.showToast({
+            //   title: '到底了',
+            // })
+            // setTimeout(function(){
+            //   wx.hideToast()
+            // },1000)
+            this.setData({
+              noMore: false
+            })
+          }
         }else{
-          // wx.showToast({
-          //   title: '到底了',
-          // })
-          // setTimeout(function(){
-          //   wx.hideToast()
-          // },1000)
-          this.setData({
-            noMore:false
+          wx.showToast({
+            title: '错误',
+            image: '/images/icon/tishi.png',
+            duration: 2000
           })
-          
         }
+        
       setTimeout(function () {
         that.setData({ hidden: true });
       }, 300);

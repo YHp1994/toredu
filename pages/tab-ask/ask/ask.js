@@ -28,7 +28,7 @@ Page({
     this.setData({
       typeNum: e.detail.value.length
     })
-    if (e.detail.value.length>10){
+    if (e.detail.value.length>4){
       this.setData({
         submitForm: false
       })
@@ -56,7 +56,7 @@ Page({
    })
     wx.chooseImage({
       count: countNum, // 最多可以选择的图片张数，默认9
-      sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
+      sizeType: ['compressed'], // original 原图，compressed 压缩图，默认二者都有
       sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
       success: function (res) {
         var imgs = that.data.imgsList;
@@ -125,19 +125,24 @@ Page({
       console.log(res);
       if (res.returnCode == "404"){
         wx.showToast({
-          title: '今日提问已达上限',
+          title: '每日最多提问三次',
           icon: 'success',
           duration: 2000
         })
-
         setTimeout(function(){
           wx.switchTab({
             url: '/pages/tab-aquare/aquare/aquare',
           })
         },3000)
-      }else{
+      } else if (res.returnCode == "000"){
         wx.navigateTo({
           url: '/pages/tab-aquare/detail/detail?id=' + res.questionID,
+        })
+      }else{
+        wx.showToast({
+          title: '内容不合法',
+          image: '/images/icon/tishi.png',
+          duration: 2000
         })
       }
       
@@ -221,6 +226,8 @@ Page({
 
 var qNum = '';
 var questionID = '';
+var noUrl = '';
+var wrong = '';
 function uploadimg(data, memberID, question) {
   var that = this,
     i = data.i ? data.i : 0,
@@ -234,38 +241,76 @@ function uploadimg(data, memberID, question) {
     success: (res) => {
       success++;
       console.log(res);
-
-      if (success == 1){
-        questionID = JSON.parse(res.data).questionID
-        console.log(questionID);
-      }
       if (res.data) {
-        var data = JSON.parse(res.data);
-        qNum = data.qNum;
-        console.log(qNum);
-      }
+        console.log(JSON.parse(res.data).returnCode);
+        if (JSON.parse(res.data).returnCode == "404") {
+          console.log("404")
+          noUrl = true;
+          wx.showToast({
+            title: '今日提问已达上限',
+            icon: 'success',
+            duration: 2000
+          })
+          return;
+        } else if (JSON.parse(res.data).returnCode == "000") {
+          var wrong = true;
+          if (success == 1) {
+            questionID = JSON.parse(res.data).questionID
+            console.log(questionID);
+          }
+          if (res.data) {
+            var data = JSON.parse(res.data);
+            qNum = data.qNum;
+            console.log(qNum);
+          }
+        } else {
+          wx.showToast({
+            title: '内容不合法',
+            image: '/images/icon/tishi.png',
+            duration: 2000
+          })
+          return;
+        }
+        }
+      
     },
     fail: (res) => {
       fail++;
     },
     complete: () => {
       i++;
-      if (i == data.path.length) {   //当图片传完时，停止调用         
-        wx.showLoading({
-          title: '上传完毕',
-        })
+      console.log(noUrl);
+      if (noUrl) {
         setTimeout(function () {
-          wx.hideLoading()
-        }, 2000)
-        wx.navigateTo({
-          url: '/pages/tab-aquare/detail/detail?id=' + questionID
+          wx.switchTab({
+            url: '/pages/tab-aquare/aquare/aquare',
+          })
+        }, 3000)
+      } else  if(wrong){
+        if (i == data.path.length) {   //当图片传完时，停止调用         
+          wx.showLoading({
+            title: '上传完毕',
+          })
+          setTimeout(function () {
+            wx.hideLoading()
+          }, 2000)
+          wx.navigateTo({
+            url: '/pages/tab-aquare/detail/detail?id=' + questionID
+          })
+        } else {//若图片还没有传完，则继续调用函数
+          data.i = i;
+          data.success = success;
+          data.fail = fail;
+          uploadimg(data);
+        }
+      } else {
+        wx.showToast({
+          title: '内容不合法',
+          image: '/images/icon/tishi.png',
+          duration: 2000
         })
-      } else {//若图片还没有传完，则继续调用函数
-        data.i = i;
-        data.success = success;
-        data.fail = fail;
-        uploadimg(data);
       }
+      
     }
   });
   uploadTask.onProgressUpdate((res) => {

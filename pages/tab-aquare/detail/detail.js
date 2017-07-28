@@ -48,28 +48,43 @@ Page({
     Api.fetchGet(ApiUrl, (err, res) => {
       //更新数据
       console.log(res);
-      if (res.data.questionAnswerList.answerList){
-        that.setData({
-          answerLists: that.data.answerLists.concat(res.data.questionAnswerList.answerList.map(function (item) {
-            return item;
-          })),
-          detail: res.data,
+      if(res.data){
+        if (res.data.questionAnswerList.answerList) {
+          that.setData({
+            answerLists: that.data.answerLists.concat(res.data.questionAnswerList.answerList.map(function (item) {
+              return item;
+            })),
+            detail: res.data,
           })
-        console.log(that.data.fileUrl)
-      } else {
-        this.setData({
-          noMore: false
-        })
+          console.log(that.data.fileUrl)
+        } else {
+          this.setData({
+            noMore: false
+          })
 
-      } 
-      if (res.data.questionAnswerList.questionExtList){
-        that.setData({
-          fileUrl: that.data.fileUrl.concat(res.data.questionAnswerList.questionExtList.map(function (item) {
-            return "https://app.toredu.com/" + item.fileUrl;
-          }))
+        }
+        if (res.data.questionAnswerList.questionExtList) {
+          that.setData({
+            fileUrl: that.data.fileUrl.concat(res.data.questionAnswerList.questionExtList.map(function (item) {
+              return "https://app.toredu.com/" + item.fileUrl;
+            }))
+          })
+        }
+        console.log(this.data.detail)
+      }else{
+        wx.showToast({
+          title: '错误',
+          image:'/images/icon/tishi.png',
+          duration:2000
         })
+      setTimeout(function(){
+        wx.navigateBack({
+
+        })
+      },2000)
+        
       }
-      console.log(this.data.detail)
+     
       setTimeout(function () {
         that.setData({ hidden: true });
       }, 300);

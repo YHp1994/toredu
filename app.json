@@ -1,16 +1,14 @@
 {
   "pages": [
-    "pages/tab-aquare/aquare/aquare",
     "pages/tab-aquare/search/search",
+    "pages/tab-aquare/aquare/aquare",
     "pages/tab-mine/mine/mine",
     "pages/tab-ask/ask/ask",
     "pages/tab-mine/sign/sign",
     "pages/tab-mine/login/login",
-    "pages/logs/logs",
     "pages/tab-aquare/detail/detail",
     "pages/tab-aquare/answer/answer",
-    "pages/tab-aquare/searchlist/searchlist",
-    "pages/tab-mine/login2/login2"
+    "pages/tab-aquare/searchlist/searchlist"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -18,7 +16,7 @@
     "navigationBarBackgroundColor": "#ffb83d",
     "navigationBarTitleText": "证券从业问答",
     "navigationBarTextStyle": "white",
-    "enablePullDownRefresh": "true"
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "color": "#b2b2b2",
