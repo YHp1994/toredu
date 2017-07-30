@@ -44,32 +44,7 @@ page{
   word-break: break-all;
   -webkit-box-orient: vertical;
   -webkit-line-clamp:2; 
-}
-.posts-list-info{
-  overflow: hidden;
-  display: flex;
-  margin-top: 30rpx;
-  padding-bottom: 20rpx;
-}
-.posts-list-info .userimg{
-  overflow: hidden;
-  width: 60rpx;
-  height: 60rpx;
-  border-radius: 50%;
-}
-.posts-list-info .item-box{
-  flex: 1;
-  margin-left: 30rpx;
-}
-.posts-list-info .item-box .userinfo{
-  display: flex;
-}
-.posts-list-info .item-box .userinfo .username,
-.posts-list-info .item-box .userinfo .time{
-  flex: 1;
-  color: #b2b2b2;
-  font-size: 28rpx;
-  line-height: 60rpx;
+  padding-top: 30rpx;
 }
 .item-box .posts-title{
   height: 80rpx;

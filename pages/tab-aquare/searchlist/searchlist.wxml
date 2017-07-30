@@ -1,5 +1,5 @@
 <!--pages/tab-aquare/searchlist/searchlist.wxml-->
-<import src="../../common/aquare-list.wxml"/>
+<import src="../../common/search-list.wxml"/>
 <view class="page aquare">
   <view class="search-wrap">
      <view class="search" bindtap="seachProblem">
@@ -9,7 +9,7 @@
      
   </view>
     <view class="page topics">
-      <template is="aquare-list" data="{{ postsList1, hidden }}"/>
+      <template is="search-list" data="{{ postsList1, hidden }}"/>
     </view>
   <view class="no-more" hidden="{{noMore}}"><text>没有更多了</text></view>
 </view>

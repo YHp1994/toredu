@@ -1,0 +1,29 @@
+<!--列表list组件 -->
+<template name="search-list">
+<view class="scroll-posts-list"  scroll-y="true" style="height:100%" >
+  <view class="postslist">
+    <block wx:for="{{postsList1}}"  wx:key="">
+      <view class="posts-list">
+        <navigator url="/pages/tab-aquare/detail/detail?id={{item.questionID}}">
+          <view class="posts-title">
+                  <view class="posts-tag hot" wx:if="{{item.top === true}}">置顶</view>
+                  <text>{{item.question}}</text>
+         </view>
+          <view class="bar-info">
+            <view class="bar-info-item">
+              <view class="bar-info-item-number">{{item.answerTimes}}人回答</view>
+            </view>
+            <view class="bar-info-item time">
+              <text class="">{{item.faqTime}}</text>
+            </view>
+          </view>
+      </navigator>
+      </view>
+    </block>
+  </view>
+</view>
+
+<loading class="loading" hidden="{{hidden}}">
+  <text class="loading-font">加载中...</text>
+</loading>
+</template>
