@@ -1,1 +1,142 @@
 /* pages/tab-aquare/searchlist/searchlist.wxss */
+page{
+  background: #f1f1f1;
+}
+.search-wrap{
+    background: #ffb83d;
+    padding: 16rpx 0;
+}
+.search{
+  width: 716rpx;
+  height: 56rpx;
+  border-radius: 12rpx;
+  margin: 0 auto;
+  background: #fff;
+  text-align: center;
+  color: #b2b2b2;
+}
+.search image{
+  width: 30rpx;
+  height: 30rpx;
+   vertical-align: middle; 
+  margin: 0rpx 10rpx 0 10rpx;
+}
+.search text{
+  font-size: 26rpx;
+  vertical-align: middle;
+  line-height: 56rpx;
+}
+/*列表 list*/
+.scroll-posts-list{
+  overflow: hidden;
+}
+.posts-list{
+  position: relative;
+  overflow: hidden;
+  padding: 0 36rpx;
+  background: #fff;
+  margin-top: 16rpx;
+}
+.posts-list .posts-title{
+  display: -webkit-box ;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:2; 
+}
+.posts-list-info{
+  overflow: hidden;
+  display: flex;
+  margin-top: 30rpx;
+  padding-bottom: 20rpx;
+}
+.posts-list-info .userimg{
+  overflow: hidden;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+}
+.posts-list-info .item-box{
+  flex: 1;
+  margin-left: 30rpx;
+}
+.posts-list-info .item-box .userinfo{
+  display: flex;
+}
+.posts-list-info .item-box .userinfo .username,
+.posts-list-info .item-box .userinfo .time{
+  flex: 1;
+  color: #b2b2b2;
+  font-size: 28rpx;
+  line-height: 60rpx;
+}
+.item-box .posts-title{
+  height: 80rpx;
+  margin: 20rpx 0;
+  font-size: 30rpx;
+  color: #000000;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.posts-list-info .item-box  .posts-tag{
+  display: inline-block;
+  width: 80rpx;
+  height: 38rpx;
+  text-align: center;
+  line-height: 38rpx;
+  margin-right: 10rpx;
+  font-size: 26rpx;
+  color: #80bd01;
+  border: 1rpx solid #80bd01;
+}
+.posts-list-info .item-box .hot{
+  color: red;
+  border: 1rpx solid red;
+}
+.posts-list .bar-info .bar-info-item{
+  display: inline-block;
+  margin-right: 50rpx;
+  line-height: 66rpx;
+}
+.posts-list .bar-info .bar-info-item-icon{
+  display: inline-block;
+  vertical-align: middle;
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 10rpx;
+}
+.posts-list .bar-info .bar-info-item-number{
+  display: inline-block;
+  vertical-align: middle;
+  color: #ffb83d;
+}
+.posts-list .bar-info .time{
+  float: right;
+  color: #b2b2b2;
+  vertical-align: middle;
+  margin-right: 0;
+}
+
+.posts-list .bar-info .bar-info-item2{
+  display: inline-block;
+  float: right;
+  line-height: 66rpx;
+}
+.posts-list .bar-info .bar-info-item2 .bar-info-item-number{
+  color: #80bd01;
+}
+/*loading*/
+.loading-font{
+  font-size: 30rpx;
+}
+
+.no-more{
+  text-align: center;
+  height: 80rpx;
+  color: #b2b2b2;
+  line-height: 80rpx;
+}

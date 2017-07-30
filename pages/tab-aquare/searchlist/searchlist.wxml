@@ -1,2 +1,16 @@
 <!--pages/tab-aquare/searchlist/searchlist.wxml-->
-<text>pages/tab-aquare/searchlist/searchlist.wxml</text>
+<import src="../../common/aquare-list.wxml"/>
+<view class="page aquare">
+  <view class="search-wrap">
+     <view class="search" bindtap="seachProblem">
+          <image src="/images/icon/search.png"></image>
+          <text>搜索问答</text>
+     </view>
+     
+  </view>
+    <view class="page topics">
+      <template is="aquare-list" data="{{ postsList1, hidden }}"/>
+    </view>
+  <view class="no-more" hidden="{{noMore}}"><text>没有更多了</text></view>
+</view>
+
